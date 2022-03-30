@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { Routes, Route, Link, Navigate, location, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios'
 import ProductCard from './productcard'
-import FetchState from './fetchState';
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [], message: '' }
+    this.state = { products: [], massDelete: [] }
 
   }
   componentDidMount() {
-    console.log('commstate',this.props.commState)
+    console.log('commstate', this.props.commState)
     const url = 'http://localhost/index.php/'
     axios.get(url).then(response => response.data).then(data => {
       const dvd = data.filter(obj => obj.Type == 'DVD');

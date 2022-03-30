@@ -12,9 +12,6 @@ class ProductCard extends React.Component {
       id: Number(id),
       isChecked: !this.state.toggleData.isChecked
     }
-    // this.setState({
-    //   toggleData: obj
-    // })
     this.props.commFunc(obj)
   }
   render() {

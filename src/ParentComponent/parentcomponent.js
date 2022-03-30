@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Routes, Route, Link, Navigate, location, withRouter } from "react-router-dom";
-import axios from 'axios'
+import { Routes, Route } from "react-router-dom";
 import ProductList from '../Components/ProductList/productlist';
 import ProductAdd from '../Components/ProductAdd/productadd';
 class ParentComponent extends React.Component {

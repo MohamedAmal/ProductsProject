@@ -13,10 +13,7 @@ class ProductAdd extends React.Component {
       redirect: false 
     };
   }
-  // componentDidUpdate() {
-  //   if(this.state.redirect){
-  //   }
-  // }
+
   handleChange(event) {
     const state = this.state
     state[event.target.name] = event.target.value
@@ -60,7 +57,6 @@ class ProductAdd extends React.Component {
     formData.append('width', this.state.width)
     formData.append('length', this.state.length)
     formData.append('weight', this.state.weight)
-    // console.log(...formData.entries())
 
     await axios({
       method: 'POST',
@@ -70,6 +66,8 @@ class ProductAdd extends React.Component {
     })
       .then(function (response) {
         // handle success
+        // console.log(response)
+
       })
       .catch(function (response) {
         //handle error
@@ -144,7 +142,7 @@ class ProductAdd extends React.Component {
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="size" name='size' onChange={this.handleChange} />
                   </div>
-                  <p className="row ml-2 my-4">Desicirption</p>
+                  <p className="mt-4">Desicirption</p>
 
                 </div>
               }
@@ -170,7 +168,7 @@ class ProductAdd extends React.Component {
                       <input type="number" className="form-control form-control" id="length" name='length' onChange={this.handleChange} />
                     </div>
                   </div>
-                  <p className="row my-4">Desicirption</p>
+                  <p className=" mt-4">Desicirption</p>
 
                 </div>
               }
@@ -182,7 +180,7 @@ class ProductAdd extends React.Component {
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="weight" name='weight' onChange={this.handleChange} />
                   </div>
-                  <p className="row my-4">Desicirption</p>
+                  <p className="mt-4">Desicirption</p>
                 </div>
               }
             </form>
@@ -192,7 +190,6 @@ class ProductAdd extends React.Component {
     }
   }
 }
-
 export default ProductAdd;
 
 

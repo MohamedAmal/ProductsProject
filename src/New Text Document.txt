@@ -1,0 +1,5 @@
+navigate
+mass delete
+
+arrange each product according to its type
+use oop

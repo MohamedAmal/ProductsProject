@@ -71,7 +71,7 @@ class ProductAdd extends React.Component {
   }
   async handleSubmit(event) {
     // const t= validate()
-    if (this.validate()) {
+    // if (this.validate()) {
       event.preventDefault();
       let formData = new FormData();
 
@@ -88,7 +88,7 @@ class ProductAdd extends React.Component {
       await axios({
         method: 'POST',
         // url: 'http://localhost/index.php/',
-        url: 'https://productsproject.000webhostapp.com/index.php',
+        url: 'https://productsproject.000webhostapp.com',
         data: formData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
       })
@@ -109,7 +109,7 @@ class ProductAdd extends React.Component {
         this.props.stateCommFunc(redirect)
       }, 0);
 
-    }
+    // }
     // if (this.state.formError == false) { }
   }
 

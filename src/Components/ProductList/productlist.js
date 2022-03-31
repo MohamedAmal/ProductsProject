@@ -19,6 +19,7 @@ class ProductList extends React.Component {
       const book = data.filter(obj => obj.Type == 'Book');
       const viewProducts = [...dvd, ...furniture, ...book]
       this.setState({ products: viewProducts })
+      console.log(data)
     }).catch(function (response) {
       // handle error
       console.log('error', response)
@@ -33,6 +34,7 @@ class ProductList extends React.Component {
         const book = data.filter(obj => obj.Type == 'Book');
         const viewProducts = [...dvd, ...furniture, ...book]
         this.setState({ products: viewProducts })
+        console.log(data)
       }).catch(function (response) {
         //handle error
         console.log('error', response)

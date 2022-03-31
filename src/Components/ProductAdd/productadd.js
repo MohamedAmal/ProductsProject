@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, version } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 class ProductAdd extends React.Component {
@@ -10,7 +10,8 @@ class ProductAdd extends React.Component {
     this.state = {
       sku: null, name: null, price: null, size: null,
       height: null, width: null, length: null, weight: null, dropDownSelection: 'DVD',
-      redirect: false 
+      redirect: false, skuError: null, nameError: null, priceError: null, typeError: null, sizeError: null,
+      heightError: null, widthError: null, lengthError: null, weightError: null, formError: null
     };
   }
 
@@ -44,47 +45,79 @@ class ProductAdd extends React.Component {
         break;
     }
   }
-  async handleSubmit(event) {
-    event.preventDefault();
-    let formData = new FormData();
-
-    formData.append('sku', this.state.sku)
-    formData.append('name', this.state.name)
-    formData.append('price', this.state.price)
-    formData.append('type', this.state.dropDownSelection)
-    formData.append('size', this.state.size)
-    formData.append('height', this.state.height)
-    formData.append('width', this.state.width)
-    formData.append('length', this.state.length)
-    formData.append('weight', this.state.weight)
-
-    await axios({
-      method: 'POST',
-      url: 'http://localhost/index.php/',
-      data: formData,
-      config: { headers: { 'Content-Type': 'multipart/form-data' } }
-    })
-      .then(function (response) {
-        // handle success
-        // console.log(response)
-
-      })
-      .catch(function (response) {
-        //handle error
-        // console.log(response)
-      });
-    setTimeout(() => {
-      this.setState({
-        redirect: true
-      })
-      const redirect = true
-      this.props.stateCommFunc(redirect)        
-    }, 0);
+  validate = () => {
+    let tempErrorState = true
+    if (!this.state.sku) { this.setState({ skuError: 'Please fill in SKU' }); tempErrorState = false }
+    if (!this.state.name) { this.setState({ nameError: 'Please fill in name' }); tempErrorState = false }
+    if (!this.state.price) { this.setState({ priceError: 'Please fill in price' }); tempErrorState = false }
+    if (!this.state.dropDownSelection) {
+      tempErrorState = true
+      this.setState({ typeError: 'Please Select the product type' })
+      return false
+    } else {
+      if (this.state.dropDownSelection == 'DVD') {
+        if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
+      }
+      if (this.state.dropDownSelection == 'Furniture') {
+        if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
+        if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
+        if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
+      }
+      if (this.state.dropDownSelection == 'Book') {
+        if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
+      }
+    }
+    return tempErrorState
   }
+  async handleSubmit(event) {
+    // const t= validate()
+    if (this.validate()) {
+      event.preventDefault();
+      let formData = new FormData();
+
+      formData.append('sku', this.state.sku)
+      formData.append('name', this.state.name)
+      formData.append('price', this.state.price)
+      formData.append('type', this.state.dropDownSelection)
+      formData.append('size', this.state.size)
+      formData.append('height', this.state.height)
+      formData.append('width', this.state.width)
+      formData.append('length', this.state.length)
+      formData.append('weight', this.state.weight)
+
+      await axios({
+        method: 'POST',
+        // url: 'http://localhost/index.php/',
+        url: 'https://productsproject.000webhostapp.com/index.php',
+        data: formData,
+        config: { headers: { 'Content-Type': 'multipart/form-data' } }
+      })
+        .then(function (response) {
+          // handle success
+          // console.log(response)
+
+        })
+        .catch(function (response) {
+          //handle error
+          // console.log(response)
+        });
+      setTimeout(() => {
+        this.setState({
+          redirect: true
+        })
+        const redirect = true
+        this.props.stateCommFunc(redirect)
+      }, 0);
+
+    }
+    // if (this.state.formError == false) { }
+  }
+
+
 
   render() {
     if (this.state.redirect) {
-      return <Navigate to="/" state={{ msg: 'dd' }}  />; 
+      return <Navigate to="/" state={{ msg: 'dd' }} />;
     }
     else {
       return (
@@ -144,6 +177,12 @@ class ProductAdd extends React.Component {
                   </div>
                   <p className="mt-4">Desicirption</p>
 
+                  {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
+                  {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}
+                  {this.state.priceError && <p className="mt-4">{this.state.priceError}</p>}
+                  {this.state.typeError && <p className="mt-4">{this.state.typeError}</p>}
+                  {this.state.sizeError && <p className="mt-4">{this.state.sizeError}</p>}
+
                 </div>
               }
 
@@ -170,6 +209,14 @@ class ProductAdd extends React.Component {
                   </div>
                   <p className=" mt-4">Desicirption</p>
 
+                  {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
+                  {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}
+                  {this.state.priceError && <p className="mt-4">{this.state.priceError}</p>}
+                  {this.state.typeError && <p className="mt-4">{this.state.typeError}</p>}
+                  {this.state.lengthError && <p className="mt-4">{this.state.lengthError}</p>}
+                  {this.state.heightError && <p className="mt-4">{this.state.heightError}</p>}
+                  {this.state.widthError && <p className="mt-4">{this.state.widthError}</p>}
+
                 </div>
               }
 
@@ -181,6 +228,13 @@ class ProductAdd extends React.Component {
                     <input type="number" className="form-control form-control" id="weight" name='weight' onChange={this.handleChange} />
                   </div>
                   <p className="mt-4">Desicirption</p>
+
+                  {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
+                  {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}
+                  {this.state.priceError && <p className="mt-4">{this.state.priceError}</p>}
+                  {this.state.typeError && <p className="mt-4">{this.state.typeError}</p>}
+                  {this.state.weightError && <p className="mt-4">{this.state.weightError}</p>}
+
                 </div>
               }
             </form>

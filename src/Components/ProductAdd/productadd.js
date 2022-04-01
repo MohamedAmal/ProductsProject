@@ -138,26 +138,26 @@ class ProductAdd extends React.Component {
             <form onSubmit={this.handleSubmit}>
 
               <div className="row ">
-                <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">SKU</label>
+                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">SKU</label>
                 <div className="col-sm-5">
                   <input type="text" className="form-control form-control" id="sku" name='sku' onChange={this.handleChange} />
                 </div>
               </div>
               <div className="row py-2">
-                <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Name</label>
+                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Name</label>
                 <div className="col-sm-5">
                   <input type="text" className="form-control form-control" id="name" name='name' onChange={this.handleChange} />
                 </div>
               </div>
               <div className="row">
-                <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Price ($)</label>
+                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Price ($)</label>
                 <div className="col-sm-5">
                   <input type="number" className="form-control form-control" id="price " name='price' onChange={this.handleChange} />
                 </div>
               </div>
 
               <div className="dropdown my-3">
-                <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
+                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="productType dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
                   {this.state.dropDownSelection}
                 </button>
@@ -172,7 +172,7 @@ class ProductAdd extends React.Component {
               {
                 this.state.dropDownSelection === 'DVD' &&
                 <div className="row my-4">
-                  <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Size (MB)</label>
+                  <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Size (MB)</label>
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="size" name='size' onChange={this.handleChange} />
                   </div>
@@ -191,19 +191,19 @@ class ProductAdd extends React.Component {
                 this.state.dropDownSelection === 'Furniture' &&
                 <div>
                   <div className="row my-4">
-                    <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Height (CM)</label>
+                    <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Height (CM)</label>
                     <div className="col-sm-5">
                       <input type="number" className="form-control form-control" id="height" name='height' onChange={this.handleChange} />
                     </div>
                   </div>
                   <div className="row my-4">
-                    <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Width (CM)</label>
+                    <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Width (CM)</label>
                     <div className="col-sm-5">
                       <input type="number" className="form-control form-control" id="width" name='width' onChange={this.handleChange} />
                     </div>
                   </div>
                   <div className="row my-4">
-                    <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Length (CM)</label>
+                    <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Length (CM)</label>
                     <div className="col-sm-5">
                       <input type="number" className="form-control form-control" id="length" name='length' onChange={this.handleChange} />
                     </div>
@@ -224,7 +224,7 @@ class ProductAdd extends React.Component {
               {
                 this.state.dropDownSelection === 'Book' &&
                 <div className="row my-4">
-                  <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Weight (KG)</label>
+                  <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Weight (KG)</label>
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="weight" name='weight' onChange={this.handleChange} />
                   </div>

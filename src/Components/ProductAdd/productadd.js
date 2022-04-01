@@ -88,7 +88,8 @@ class ProductAdd extends React.Component {
       await axios({
         method: 'POST',
         // url: 'http://localhost/index.php/',
-        url: 'https://productsproject.000webhostapp.com/index.php/',
+        url: 'http://Localhost/index.php/',
+        // url: 'https://productsproject.000webhostapp.com/index.php/',
         data: formData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
       })

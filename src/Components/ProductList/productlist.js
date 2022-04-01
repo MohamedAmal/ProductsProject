@@ -11,7 +11,8 @@ class ProductList extends React.Component {
   componentDidMount() {
     console.log('commstate', this.props.commState)
     // const url = 'http://localhost/index.php/'
-    const url = 'https://productsproject.000webhostapp.com/index.php/'
+    // const url = 'http://Localhost/index.php/'
+    // const url = 'https://productsproject.000webhostapp.com/index.php/'
 
     axios.get(url).then(response => response.data).then(data => {
       const dvd = data.filter(obj => obj.Type == 'DVD');
@@ -27,18 +28,19 @@ class ProductList extends React.Component {
   }
   componentDidUpdate() {
     // const url = 'http://localhost/index.php/'
-    const url = 'https://productsproject.000webhostapp.com/index.php/'
-      axios.get(url).then(response => response.data).then(data => {
-        const dvd = data.filter(obj => obj.Type == 'DVD');
-        const furniture = data.filter(obj => obj.Type == 'Furniture');
-        const book = data.filter(obj => obj.Type == 'Book');
-        const viewProducts = [...dvd, ...furniture, ...book]
-        this.setState({ products: viewProducts })
-        console.log(data)
-      }).catch(function (response) {
-        //handle error
-        console.log('error', response)
-      });
+    // const url = 'http://Localhost/index.php/'
+    // const url = 'https://productsproject.000webhostapp.com/index.php/'
+      // axios.get(url).then(response => response.data).then(data => {
+      //   const dvd = data.filter(obj => obj.Type == 'DVD');
+      //   const furniture = data.filter(obj => obj.Type == 'Furniture');
+      //   const book = data.filter(obj => obj.Type == 'Book');
+      //   const viewProducts = [...dvd, ...furniture, ...book]
+      //   this.setState({ products: viewProducts })
+      //   console.log(data)
+      // }).catch(function (response) {
+      //   //handle error
+      //   console.log('error', response)
+      // });
   }
 
   handleDelete = event => {
@@ -46,7 +48,8 @@ class ProductList extends React.Component {
     axios({
       method: 'DELETE',
       // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),
-      url: 'https://productsproject.000webhostapp.com/index.php/?delete=' + this.state.massDelete.join(),
+      url: 'http://Localhost/index.php/?delete=' + this.state.massDelete.join(),
+      // url: 'https://productsproject.000webhostapp.com/index.php/?delete=' + this.state.massDelete.join(),
 
       config: { headers: { 'Content-Type': 'application/json' } }
     })

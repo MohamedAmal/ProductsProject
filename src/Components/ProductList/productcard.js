@@ -7,6 +7,9 @@ class ProductCard extends React.Component {
       clear: this.props.clear
     }
   }
+  componentDidMount(){
+    console.log('card here')
+  }
   toggleChange = (id) => {
     const obj = {
       id: Number(id),

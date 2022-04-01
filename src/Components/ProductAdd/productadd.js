@@ -1,4 +1,4 @@
-import React, { Component, version } from 'react';
+import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 class ProductAdd extends React.Component {
@@ -55,15 +55,15 @@ class ProductAdd extends React.Component {
       this.setState({ typeError: 'Please Select the product type' })
       return false
     } else {
-      if (this.state.dropDownSelection == 'DVD') {
+      if (this.state.dropDownSelection === 'DVD') {
         if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
       }
-      if (this.state.dropDownSelection == 'Furniture') {
+      if (this.state.dropDownSelection === 'Furniture') {
         if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
         if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
         if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
       }
-      if (this.state.dropDownSelection == 'Book') {
+      if (this.state.dropDownSelection === 'Book') {
         if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
       }
     }
@@ -170,7 +170,7 @@ class ProductAdd extends React.Component {
               <div className='my-4'></div>
 
               {
-                this.state.dropDownSelection == 'DVD' &&
+                this.state.dropDownSelection === 'DVD' &&
                 <div className="row my-4">
                   <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Size (MB)</label>
                   <div className="col-sm-5">
@@ -188,7 +188,7 @@ class ProductAdd extends React.Component {
               }
 
               {
-                this.state.dropDownSelection == 'Furniture' &&
+                this.state.dropDownSelection === 'Furniture' &&
                 <div>
                   <div className="row my-4">
                     <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Height (CM)</label>
@@ -222,7 +222,7 @@ class ProductAdd extends React.Component {
               }
 
               {
-                this.state.dropDownSelection == 'Book' &&
+                this.state.dropDownSelection === 'Book' &&
                 <div className="row my-4">
                   <label for="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Weight (KG)</label>
                   <div className="col-sm-5">

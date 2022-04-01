@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import ProductCard from './productcard'
@@ -15,9 +15,9 @@ class ProductList extends React.Component {
     const url = 'https://productsproject.000webhostapp.com/index.php/'
 
     axios.get(url).then(response => response.data).then(data => {
-      const dvd = data.filter(obj => obj.Type == 'DVD');
-      const furniture = data.filter(obj => obj.Type == 'Furniture');
-      const book = data.filter(obj => obj.Type == 'Book');
+      const dvd = data.filter(obj => obj.Type === 'DVD');
+      const furniture = data.filter(obj => obj.Type === 'Furniture');
+      const book = data.filter(obj => obj.Type === 'Book');
       const viewProducts = [...dvd, ...furniture, ...book]
       this.setState({ products: viewProducts })
       console.log(data)
@@ -64,7 +64,7 @@ class ProductList extends React.Component {
 
   updateState(toggleData) {
     let tempArr = this.state.massDelete
-    if (toggleData.isChecked == true) {
+    if (toggleData.isChecked === true) {
       tempArr = tempArr.concat(toggleData.id)
       this.setState({ massDelete: tempArr })
     } else {
@@ -77,7 +77,7 @@ class ProductList extends React.Component {
     return (
       <div className="container">
         <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
-          <h2>Product List </h2>
+          <h2>Product List 5ara </h2>
           {this.props.commState.toString()}
           <div className='d-flex justify-content-between'>
             <Link to='/addproduct' className='btn btn-primary m-2'>

@@ -77,7 +77,7 @@ class ProductList extends React.Component {
     return (
       <div className="container">
         <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
-          <h2>Product List 5ara </h2>
+          <h2>Product List 5ara gg</h2>
           {this.props.commState.toString()}
           <div className='d-flex justify-content-between'>
             <Link to='/addproduct' className='btn btn-primary m-2'>

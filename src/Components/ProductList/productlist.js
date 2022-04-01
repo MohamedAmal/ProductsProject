@@ -12,7 +12,7 @@ class ProductList extends React.Component {
     console.log('commstate', this.props.commState)
     // const url = 'http://localhost/index.php/'
     // const url = 'http://Localhost/index.php/'
-    // const url = 'https://productsproject.000webhostapp.com/index.php/'
+    const url = 'https://productsproject.000webhostapp.com/index.php/'
 
     axios.get(url).then(response => response.data).then(data => {
       const dvd = data.filter(obj => obj.Type == 'DVD');
@@ -48,8 +48,8 @@ class ProductList extends React.Component {
     axios({
       method: 'DELETE',
       // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),
-      url: 'http://Localhost/index.php/?delete=' + this.state.massDelete.join(),
-      // url: 'https://productsproject.000webhostapp.com/index.php/?delete=' + this.state.massDelete.join(),
+      // url: 'http://Localhost/index.php/?delete=' + this.state.massDelete.join(),
+      url: 'https://productsproject.000webhostapp.com/index.php/?delete=' + this.state.massDelete.join(),
 
       config: { headers: { 'Content-Type': 'application/json' } }
     })

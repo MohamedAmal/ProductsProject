@@ -8,10 +8,10 @@ class ParentComponent extends React.Component {
     this.state = { commState: false }
   }
   componentDidUpdate() {
-    console.log(this.state.commState)
+    // console.log(this.state.commState)
   }
   updateState(state) {
-    console.log(state)
+    // console.log(state)
     this.setState({
       commState: state
     })
@@ -22,7 +22,7 @@ class ParentComponent extends React.Component {
       < main>
         <div className="container">
           <Routes>
-            <Route exact path='/' element={<ProductList commState={this.state.commState} />} />
+            <Route path='/' element={<ProductList commState={this.state.commState} />} />
             <Route path='/addproduct' element={<ProductAdd stateCommFunc={e => this.updateState(e)} />} />
           </Routes>
         </div>

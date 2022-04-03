@@ -14,7 +14,6 @@ class ProductAdd extends React.Component {
       heightError: null, widthError: null, lengthError: null, weightError: null, formError: null
     };
   }
-
   handleChange(event) {
     const state = this.state
     state[event.target.name] = event.target.value
@@ -45,70 +44,71 @@ class ProductAdd extends React.Component {
         break;
     }
   }
-  validate = () => {
-    let tempErrorState = true
-    if (!this.state.sku) { this.setState({ skuError: 'Please fill in SKU' }); tempErrorState = false }
-    if (!this.state.name) { this.setState({ nameError: 'Please fill in name' }); tempErrorState = false }
-    if (!this.state.price) { this.setState({ priceError: 'Please fill in price' }); tempErrorState = false }
-    if (!this.state.dropDownSelection) {
-      tempErrorState = true
-      this.setState({ typeError: 'Please Select the product type' })
-      return false
-    } else {
-      if (this.state.dropDownSelection === 'DVD') {
-        if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
-      }
-      if (this.state.dropDownSelection === 'Furniture') {
-        if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
-        if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
-        if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
-      }
-      if (this.state.dropDownSelection === 'Book') {
-        if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
-      }
-    }
-    return tempErrorState
-  }
+  // validate = () => {
+  //   let tempErrorState = true
+  //   if (!this.state.sku) { this.setState({ skuError: 'Please fill in SKU' }); tempErrorState = false }
+  //   if (!this.state.name) { this.setState({ nameError: 'Please fill in name' }); tempErrorState = false }
+  //   if (!this.state.price) { this.setState({ priceError: 'Please fill in price' }); tempErrorState = false }
+  //   if (!this.state.dropDownSelection) {
+  //     tempErrorState = true
+  //     this.setState({ typeError: 'Please Select the product type' })
+  //     return false
+  //   } else {
+  //     if (this.state.dropDownSelection === 'DVD') {
+  //       if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
+  //     }
+  //     if (this.state.dropDownSelection === 'Furniture') {
+  //       if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
+  //       if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
+  //       if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
+  //     }
+  //     if (this.state.dropDownSelection === 'Book') {
+  //       if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
+  //     }
+  //   }
+  //   return tempErrorState
+  // }
   async handleSubmit(event) {
     // const t= validate()
     // if (this.validate()) {
-      event.preventDefault();
-      let formData = new FormData();
+    event.preventDefault();
+    let formData = new FormData();
 
-      formData.append('sku', this.state.sku)
-      formData.append('name', this.state.name)
-      formData.append('price', this.state.price)
-      formData.append('type', this.state.dropDownSelection)
-      formData.append('size', this.state.size)
-      formData.append('height', this.state.height)
-      formData.append('width', this.state.width)
-      formData.append('length', this.state.length)
-      formData.append('weight', this.state.weight)
+    formData.append('sku', this.state.sku)
+    formData.append('name', this.state.name)
+    formData.append('price', this.state.price)
+    formData.append('type', this.state.dropDownSelection)
+    formData.append('size', this.state.size)
+    formData.append('height', this.state.height)
+    formData.append('width', this.state.width)
+    formData.append('length', this.state.length)
+    formData.append('weight', this.state.weight)
 
-      await axios({
-        method: 'POST',
-        // url: 'http://localhost/index.php/',
-        // url: 'http://Localhost/index.php/',
-        url: 'https://productsproject.000webhostapp.com/index.php/',
-        data: formData,
-        config: { headers: { 'Content-Type': 'multipart/form-data' } }
+    await axios({
+      method: 'POST',
+      url: 'http://localhost/index.php/',  // local
+      // url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
+
+
+      data: formData,
+      config: { headers: { 'Content-Type': 'multipart/form-data' } }
+      // config: { headers: { 'Content-Type': 'application/json; charset=UTF-8' } }
+    })
+      .then(function (response) {
+        // handle success
+        console.log(response)
       })
-        .then(function (response) {
-          // handle success
-          // console.log(response)
-
-        })
-        .catch(function (response) {
-          //handle error
-          // console.log(response)
-        });
-      setTimeout(() => {
-        this.setState({
-          redirect: true
-        })
-        const redirect = true
-        this.props.stateCommFunc(redirect)
-      }, 0);
+      .catch(function (response) {
+        //handle error
+        console.log(response)
+      });
+    const redirect = true
+    this.props.stateCommFunc(redirect)
+    setTimeout(() => {
+      this.setState({
+        redirect: true
+      })
+    }, 0);
 
     // }
     // if (this.state.formError == false) { }
@@ -126,7 +126,9 @@ class ProductAdd extends React.Component {
           <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
             <h2>Product Add</h2>
             <div className='d-flex justify-content-between'>
-              <form onSubmit={this.handleSubmit} id='product_form'>
+              <form onSubmit={this.handleSubmit} id='product_form' form action="index.php">
+                {/* <form onSubmit={this.handleSubmit} id='product_form' > */}
+
                 <button type="submit" className="btn btn-primary m-2" value="save">Save</button>
 
                 <Link to="/" className="btn btn-success m-2">Cancel</Link>

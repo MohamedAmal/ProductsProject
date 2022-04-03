@@ -1,56 +1,37 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import { Navigate } from 'react-router-dom';
+
 import ProductCard from './productcard'
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [] }
-
+    this.state = { products: [], massDelete: [], redirect: false }
   }
   componentDidMount() {
-    console.log('commstate', this.props.commState)
-    // const url = 'http://localhost/index.php/'
-    // const url = 'http://Localhost/index.php/'
-    const url = 'https://productsproject.000webhostapp.com/index.php/'
-
+    const url = 'http://localhost/index.php/'  // local
+    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
     axios.get(url).then(response => response.data).then(data => {
-      const dvd = data.filter(obj => obj.Type === 'DVD');
-      const furniture = data.filter(obj => obj.Type === 'Furniture');
-      const book = data.filter(obj => obj.Type === 'Book');
+      const dvd = data.filter(obj => obj.Type == 'DVD');
+      const furniture = data.filter(obj => obj.Type == 'Furniture');
+      const book = data.filter(obj => obj.Type == 'Book');
       const viewProducts = [...dvd, ...furniture, ...book]
       this.setState({ products: viewProducts })
-      console.log(data)
     }).catch(function (response) {
-      // handle error
       console.log('error', response)
     });
   }
   componentDidUpdate() {
-    // const url = 'http://localhost/index.php/'
-    // const url = 'http://Localhost/index.php/'
-    // const url = 'https://productsproject.000webhostapp.com/index.php/'
-      // axios.get(url).then(response => response.data).then(data => {
-      //   const dvd = data.filter(obj => obj.Type == 'DVD');
-      //   const furniture = data.filter(obj => obj.Type == 'Furniture');
-      //   const book = data.filter(obj => obj.Type == 'Book');
-      //   const viewProducts = [...dvd, ...furniture, ...book]
-      //   this.setState({ products: viewProducts })
-      //   console.log(data)
-      // }).catch(function (response) {
-      //   //handle error
-      //   console.log('error', response)
-      // });
+    // console.log('mass', this.state.products.length)
+    // console.log(this.state.massDelete)
   }
-
   handleDelete = event => {
     event.preventDefault()
     axios({
       method: 'DELETE',
-      // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),
-      // url: 'http://Localhost/index.php/?delete=' + this.state.massDelete.join(),
-      url: 'https://productsproject.000webhostapp.com/index.php/?delete=' + this.state.massDelete.join(),
-
+      url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+      // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
       config: { headers: { 'Content-Type': 'application/json' } }
     })
       .then(function (response) {
@@ -59,7 +40,17 @@ class ProductList extends React.Component {
       .catch(function (response) {
         console.log(response)
       });
-    this.setState({ massDelete: [] })
+    // console.log('massDelete', this.state.massDelete, this.state.massDelete.length)
+    // const tempstate = this.state.products
+    // console.log(tempstate)
+    // const tempstate2 = this.state.massDelete
+    // console.log(tempstate2)
+    // const restProducts = tempstate.filter(item => !tempstate2.includes(item.id))
+    // console.log('restProducts', this.state.restProducts)
+    // console.log('productsyy', this.state.products, this.state.products.length)
+    // // console.log(restProducts)
+    // this.setState({ products: restProducts })
+    // window.location.reload(false);
   }
 
   updateState(toggleData) {
@@ -77,8 +68,10 @@ class ProductList extends React.Component {
     return (
       <div className="container">
         <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
-          <h2>Product List 5ara gg</h2>
-          {this.props.commState.toString()}
+          <h2>Product List</h2>
+          <p>{this.props.commState.toString()}</p>
+          <p>{this.props.massDelete}</p>
+
           <div className='d-flex justify-content-between'>
             <Link to='/addproduct' className='btn btn-primary m-2'>
               Add

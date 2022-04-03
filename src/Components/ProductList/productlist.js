@@ -10,8 +10,8 @@ class ProductList extends React.Component {
     this.state = { products: [], massDelete: [], redirect: false }
   }
   componentDidMount() {
-    const url = 'http://localhost/index.php/'  // local
-    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+    // const url = 'http://localhost/index.php/'  // local
+    const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
     axios.get(url).then(response => response.data).then(data => {
       const dvd = data.filter(obj => obj.Type == 'DVD');
       const furniture = data.filter(obj => obj.Type == 'Furniture');
@@ -30,8 +30,8 @@ class ProductList extends React.Component {
     event.preventDefault()
     axios({
       method: 'DELETE',
-      url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-      // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+      // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+      url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
       config: { headers: { 'Content-Type': 'application/json' } }
     })
       .then(function (response) {

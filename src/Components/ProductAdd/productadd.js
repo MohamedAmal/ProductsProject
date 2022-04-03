@@ -86,8 +86,8 @@ class ProductAdd extends React.Component {
 
     await axios({
       method: 'POST',
-      url: 'http://localhost/index.php/',  // local
-      // url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
+      // url: 'http://localhost/index.php/',  // local
+      url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
 
 
       data: formData,

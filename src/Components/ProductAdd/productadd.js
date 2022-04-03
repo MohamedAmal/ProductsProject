@@ -88,11 +88,8 @@ class ProductAdd extends React.Component {
       method: 'POST',
       // url: 'http://localhost/index.php/',  // local
       url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
-
-
       data: formData,
       config: { headers: { 'Content-Type': 'multipart/form-data' } }
-      // config: { headers: { 'Content-Type': 'application/json; charset=UTF-8' } }
     })
       .then(function (response) {
         // handle success
@@ -109,9 +106,6 @@ class ProductAdd extends React.Component {
         redirect: true
       })
     }, 0);
-
-    // }
-    // if (this.state.formError == false) { }
   }
 
 

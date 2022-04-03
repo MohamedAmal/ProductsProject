@@ -8,10 +8,8 @@ class ParentComponent extends React.Component {
     this.state = { commState: false }
   }
   componentDidUpdate() {
-    // console.log(this.state.commState)
   }
   updateState(state) {
-    // console.log(state)
     this.setState({
       commState: state
     })

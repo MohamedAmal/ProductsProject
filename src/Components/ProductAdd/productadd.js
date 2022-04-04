@@ -44,33 +44,33 @@ class ProductAdd extends React.Component {
         break;
     }
   }
-  // validate = () => {
-  //   let tempErrorState = true
-  //   if (!this.state.sku) { this.setState({ skuError: 'Please fill in SKU' }); tempErrorState = false }
-  //   if (!this.state.name) { this.setState({ nameError: 'Please fill in name' }); tempErrorState = false }
-  //   if (!this.state.price) { this.setState({ priceError: 'Please fill in price' }); tempErrorState = false }
-  //   if (!this.state.dropDownSelection) {
-  //     tempErrorState = true
-  //     this.setState({ typeError: 'Please Select the product type' })
-  //     return false
-  //   } else {
-  //     if (this.state.dropDownSelection === 'DVD') {
-  //       if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
-  //     }
-  //     if (this.state.dropDownSelection === 'Furniture') {
-  //       if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
-  //       if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
-  //       if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
-  //     }
-  //     if (this.state.dropDownSelection === 'Book') {
-  //       if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
-  //     }
-  //   }
-  //   return tempErrorState
-  // }
+  validate = () => {
+    let tempErrorState = true
+    if (!this.state.sku) { this.setState({ skuError: 'Please fill in SKU' }); tempErrorState = false }
+    if (!this.state.name) { this.setState({ nameError: 'Please fill in name' }); tempErrorState = false }
+    if (!this.state.price) { this.setState({ priceError: 'Please fill in price' }); tempErrorState = false }
+    if (!this.state.dropDownSelection) {
+      tempErrorState = true
+      this.setState({ typeError: 'Please Select the product type' })
+      return false
+    } else {
+      if (this.state.dropDownSelection === 'DVD') {
+        if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
+      }
+      if (this.state.dropDownSelection === 'Furniture') {
+        if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
+        if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
+        if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
+      }
+      if (this.state.dropDownSelection === 'Book') {
+        if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
+      }
+    }
+    return tempErrorState
+  }
   async handleSubmit(event) {
     // const t= validate()
-    // if (this.validate()) {
+    if (this.validate()) {
     event.preventDefault();
     let formData = new FormData();
 
@@ -107,7 +107,7 @@ class ProductAdd extends React.Component {
       })
     }, 0);
   }
-
+  }
 
 
   render() {

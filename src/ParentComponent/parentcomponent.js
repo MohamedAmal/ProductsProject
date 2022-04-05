@@ -5,17 +5,17 @@ import ProductAdd from '../Components/ProductAdd/productadd';
 class ParentComponent extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { commState: false }
+    this.state = { commState: false, updateList: null }
   }
   componentDidUpdate() {
   }
+
   updateState(state) {
     this.setState({
       commState: state
     })
   }
   render() {
-
     return (
       < main>
         <div className="container">

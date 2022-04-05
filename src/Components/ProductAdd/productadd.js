@@ -46,73 +46,85 @@ class ProductAdd extends React.Component {
   }
   validate = () => {
     let tempErrorState = true
+    //validate empty input
     if (!this.state.sku) { this.setState({ skuError: 'Please fill in SKU' }); tempErrorState = false }
     if (!this.state.name) { this.setState({ nameError: 'Please fill in name' }); tempErrorState = false }
     if (!this.state.price) { this.setState({ priceError: 'Please fill in price' }); tempErrorState = false }
-    if (!this.state.dropDownSelection) {
-      tempErrorState = true
-      this.setState({ typeError: 'Please Select the product type' })
-      return false
-    } else {
-      if (this.state.dropDownSelection === 'DVD') {
-        if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
-      }
-      if (this.state.dropDownSelection === 'Furniture') {
-        if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
-        if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
-        if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
-      }
-      if (this.state.dropDownSelection === 'Book') {
-        if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
-      }
+    //validate input
+    if (isNaN(this.state.price) || this.state.price < 0) { this.setState({ priceError: 'Please insert a valid price' }); tempErrorState = false }
+
+    if (this.state.dropDownSelection === 'DVD') {
+      if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
+      if (isNaN(this.state.size) || this.state.size < 0) { this.setState({ sizeError: 'Please insert a valid size' }); tempErrorState = false }
     }
+    if (this.state.dropDownSelection === 'Furniture') {
+      if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
+      //validate input
+      if (isNaN(this.state.height) || this.state.height < 0) { this.setState({ heightError: 'Please insert a valid height' }); tempErrorState = false }
+      if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
+      //validate input
+      if (isNaN(this.state.width) || this.state.width < 0) { this.setState({ widthError: 'Please insert a valid width' }); tempErrorState = false }
+      if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
+      //validate input
+      if (isNaN(this.state.length) || this.state.length < 0) { this.setState({ lengthError: 'Please insert a valid length' }); tempErrorState = false }
+    }
+    if (this.state.dropDownSelection === 'Book') {
+      if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
+      //validate input
+      if (isNaN(this.state.weight) || this.state.weight < 0) { this.setState({ weightError: 'Please insert a valid weight' }); tempErrorState = false }
+    }
+    console.log(tempErrorState)
     return tempErrorState
   }
-  async handleSubmit(event) {
-    // const t= validate()
-    if (this.validate()) {
+
+  handleSubmit(event) {
     event.preventDefault();
-    let formData = new FormData();
+    if (this.validate()) {
+      console.log('validate', this.validate())
+      let formData = new FormData();
 
-    formData.append('sku', this.state.sku)
-    formData.append('name', this.state.name)
-    formData.append('price', this.state.price)
-    formData.append('type', this.state.dropDownSelection)
-    formData.append('size', this.state.size)
-    formData.append('height', this.state.height)
-    formData.append('width', this.state.width)
-    formData.append('length', this.state.length)
-    formData.append('weight', this.state.weight)
+      formData.append('sku', this.state.sku)
+      formData.append('name', this.state.name)
+      formData.append('price', this.state.price)
+      formData.append('type', this.state.dropDownSelection)
+      formData.append('size', this.state.size)
+      formData.append('height', this.state.height)
+      formData.append('width', this.state.width)
+      formData.append('length', this.state.length)
+      formData.append('weight', this.state.weight)
 
-    await axios({
-      method: 'POST',
-      // url: 'http://localhost/index.php/',  // local
-      url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
-      data: formData,
-      config: { headers: { 'Content-Type': 'multipart/form-data' } }
-    })
-      .then(function (response) {
-        // handle success
-        console.log(response)
+      axios({
+        method: 'POST',
+        // url: 'http://localhost/index.php/',  // local
+        url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
+        data: formData,
+        config: { headers: { 'Content-Type': 'multipart/form-data' } }
       })
-      .catch(function (response) {
-        //handle error
-        console.log(response)
-      });
-    const redirect = true
-    this.props.stateCommFunc(redirect)
-    setTimeout(() => {
-      this.setState({
-        redirect: true
-      })
-    }, 0);
-  }
+        .then(function (response) {
+          // handle success
+          console.log(response)
+        })
+        .catch(function (response) {
+          //handle error
+          console.log(response)
+        });
+      const redirect = true
+      console.log(redirect)
+      this.props.stateCommFunc(redirect)
+      setTimeout(() => {
+        console.log('redirect')
+        this.setState({
+          redirect: true
+        })
+      }, 0);
+    } 
+
   }
 
 
   render() {
     if (this.state.redirect) {
-      return <Navigate to="/" state={{ msg: 'dd' }} />;
+      return <Navigate to="/" />;
     }
     else {
       return (
@@ -120,8 +132,7 @@ class ProductAdd extends React.Component {
           <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
             <h2>Product Add</h2>
             <div className='d-flex justify-content-between'>
-              <form onSubmit={this.handleSubmit} id='product_form' form action="index.php">
-                {/* <form onSubmit={this.handleSubmit} id='product_form' > */}
+              <form onSubmit={this.handleSubmit} id='product_form' >
 
                 <button type="submit" className="btn btn-primary m-2" value="save">Save</button>
 
@@ -172,7 +183,7 @@ class ProductAdd extends React.Component {
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="size" name='size' onChange={this.handleChange} />
                   </div>
-                  <p className="mt-4">Desicirption</p>
+                  <p className="mt-4">Description</p>
 
                   {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
                   {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}
@@ -204,7 +215,7 @@ class ProductAdd extends React.Component {
                       <input type="number" className="form-control form-control" id="length" name='length' onChange={this.handleChange} />
                     </div>
                   </div>
-                  <p className=" mt-4">Desicirption</p>
+                  <p className=" mt-4">Description</p>
 
                   {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
                   {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}
@@ -224,7 +235,7 @@ class ProductAdd extends React.Component {
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="weight" name='weight' onChange={this.handleChange} />
                   </div>
-                  <p className="mt-4">Desicirption</p>
+                  <p className="mt-4">Description</p>
 
                   {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
                   {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}

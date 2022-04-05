@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
 
 import ProductCard from './productcard'
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [], redirect: false }
+    this.state = { products: [], massDelete: [], refresh: false }
     this.enableUpdate = false
   }
   componentDidMount() {
@@ -22,18 +22,25 @@ class ProductList extends React.Component {
       console.log('error', response)
     });
   }
-  componentDidUpdate() {
-  }
-  handleDelete = () => {
-    axios({
-      method: 'DELETE',
-      // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-      url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
-      config: { headers: { 'Content-Type': 'application/json' } }
-    }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-    this.enableUpdate = true
-    console.log(this.enableUpdate )
 
+  componentDidUpdate() {
+
+  }
+
+  handleDelete = (e) => {
+    // e.preventDefault();
+    console.log(this.state.massDelete)
+    if (this.state.massDelete.length > 0) {
+      axios({
+        method: 'DELETE',
+        url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+        url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+        config: { headers: { 'Content-Type': 'application/json' } }
+      }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
+      // this.enableUpdate = true
+      // console.log(this.enableUpdate)
+      window.location.reload(false)
+    }
   }
 
   updateState(toggleData) {

@@ -159,7 +159,7 @@ class ProductAdd extends React.Component {
               <div className="row">
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Price ($)</label>
                 <div className="col-sm-5">
-                  <input type="number" className="form-control form-control" id="price " name='price' onChange={this.handleChange} />
+                  <input type="number" className="form-control form-control" id="price" name='price' onChange={this.handleChange} />
                 </div>
               </div>
 

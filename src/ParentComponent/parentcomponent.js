@@ -17,14 +17,16 @@ class ParentComponent extends React.Component {
   }
   render() {
     return (
-      < main>
-        <div className="container">
-          <Routes>
-            <Route path='/' element={<ProductList commState={this.state.commState} />} />
-            <Route path='/addproduct' element={<ProductAdd stateCommFunc={e => this.updateState(e)} />} />
-          </Routes>
-        </div>
-      </main>
+      <body>
+        < main>
+          <div className="container">
+            <Routes>
+              <Route path='/' element={<ProductList commState={this.state.commState} />} />
+              <Route path='/addproduct' element={<ProductAdd stateCommFunc={e => this.updateState(e)} />} />
+            </Routes>
+          </div>
+        </main>
+      </body>
     )
   }
 }

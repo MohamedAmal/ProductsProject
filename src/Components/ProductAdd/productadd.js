@@ -132,7 +132,7 @@ class ProductAdd extends React.Component {
           <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
             <h2>Product Add</h2>
             <div className='d-flex justify-content-between'>
-              <form id="product_form" onSubmit={this.handleSubmit}  >
+              <form onSubmit={this.handleSubmit}  >
 
                 <button type="submit" className="btn btn-primary m-2" value="save">Save</button>
 
@@ -163,15 +163,15 @@ class ProductAdd extends React.Component {
                 </div>
               </div>
 
-              <div className="dropdown my-3" id="productType">
-                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="productType" data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
+              <div className="dropdown my-3"  id="productType">
+                <label  id="productType" htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
+                <button id="productType" className="btn btn-secondary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
                   {this.state.dropDownSelection}
                 </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a className="dropdown-item" onClick={this.handleToggle} id='DVD' name="DVD" value='DVD' >DVD</a></li>
-                  <li><a className="dropdown-item" onClick={this.handleToggle} id='Furniture' name="Furniture" value='Furniture' >Furniture</a></li>
-                  <li><a className="dropdown-item" onClick={this.handleToggle} id='Book' name="Book" value='Book '>Book</a></li>
+                <ul id="productType"className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a  className="dropdown-item" onClick={this.handleToggle} id='DVD' name="DVD" value='DVD' >DVD</a></li>
+                  <li><a  className="dropdown-item" onClick={this.handleToggle} id='Furniture' name="Furniture" value='Furniture' >Furniture</a></li>
+                  <li><a   className="dropdown-item" onClick={this.handleToggle} id='Book' name="Book" value='Book '>Book</a></li>
                 </ul>
               </div>
               <div className='my-4'></div>

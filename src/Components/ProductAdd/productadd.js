@@ -19,12 +19,13 @@ class ProductAdd extends React.Component {
     state[event.target.name] = event.target.value
     this.setState(state);
   }
+
   handleToggle(e) {
     const state = this.state
-    state.dropDownSelection = e.target.name
+    state.dropDownSelection = e.target.value
     this.setState(state);
-    console.log(e.target.name)
-    console.log('state', this.state)
+    console.log('nnn',e.target.value)
+    // console.log('state', this.state)
     switch (state.dropDownSelection) {
       case 'DVD':
         state.height = null
@@ -147,38 +148,38 @@ class ProductAdd extends React.Component {
               <div className="row ">
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">SKU</label>
                 <div className="col-sm-5">
-                  <input type="text" className="form-control form-control" id="sku" name='sku' onChange={this.handleChange} />
+                  <input type="text" className="form-control" id="sku" name='sku' onChange={this.handleChange} />
                 </div>
               </div>
               <div className="row py-2">
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Name</label>
                 <div className="col-sm-5">
-                  <input type="text" className="form-control form-control" id="name" name='name' onChange={this.handleChange} />
+                  <input type="text" className="form-control" id="name" name='name' onChange={this.handleChange} />
                 </div>
               </div>
               <div className="row">
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Price ($)</label>
                 <div className="col-sm-5">
-                  <input type="number" className="form-control form-control" id="price" name='price' onChange={this.handleChange} />
+                  <input type="number" className="form-control" id="price" name='price' onChange={this.handleChange} />
                 </div>
               </div>
 
-              <div className="dropdown my-3" >
-                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
-                <button id="productType" className="btn btn-secondary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
-                  {this.state.dropDownSelection.toString()}
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a className="dropdown-item" onClick={this.handleToggle}  name="DVD" value='DVD' >DVD</a></li>
-                  <li><a className="dropdown-item" onClick={this.handleToggle}  name="Furniture" value='Furniture' >Furniture</a></li>
-                  <li><a className="dropdown-item" onClick={this.handleToggle}  name="Book" value='Book '>Book</a></li>
-                </ul>
+
+              <div className="row py-2 ">
+                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label ">Type Switcher</label>
+                <div className="col-sm-5">
+                  <select onClick={this.handleToggle} style={{ width: "auto" }} id="productType" className=" form-select" aria-label="Default select example">
+                    <option  name="DVD" value="DVD" defaultValue="selected" >DVD</option>
+                    <option  name="Furniture" value="Furniture">Furniture</option>
+                    <option  name="Book" value="Book">Book</option>
+                  </select>
+                </div>
+
               </div>
-              <div className='my-4'></div>
 
               {
                 this.state.dropDownSelection === 'DVD' &&
-                <div className="row my-4">
+                <div className="row mt-4">
                   <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Size (MB)</label>
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="size" name='size' onChange={this.handleChange} />
@@ -197,19 +198,19 @@ class ProductAdd extends React.Component {
               {
                 this.state.dropDownSelection === 'Furniture' &&
                 <div>
-                  <div className="row my-4">
+                  <div className="row mt-4">
                     <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Height (CM)</label>
                     <div className="col-sm-5">
                       <input type="number" className="form-control form-control" id="height" name='height' onChange={this.handleChange} />
                     </div>
                   </div>
-                  <div className="row my-4">
+                  <div className="row py-2">
                     <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Width (CM)</label>
                     <div className="col-sm-5">
                       <input type="number" className="form-control form-control" id="width" name='width' onChange={this.handleChange} />
                     </div>
                   </div>
-                  <div className="row my-4">
+                  <div className="row ">
                     <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Length (CM)</label>
                     <div className="col-sm-5">
                       <input type="number" className="form-control form-control" id="length" name='length' onChange={this.handleChange} />

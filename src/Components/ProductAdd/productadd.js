@@ -47,31 +47,31 @@ class ProductAdd extends React.Component {
   validate = () => {
     let tempErrorState = true
     //validate empty input
-    if (!this.state.sku) { this.setState({ skuError: 'Please fill in SKU' }); tempErrorState = false }
-    if (!this.state.name) { this.setState({ nameError: 'Please fill in name' }); tempErrorState = false }
-    if (!this.state.price) { this.setState({ priceError: 'Please fill in price' }); tempErrorState = false }
+    if (!this.state.sku) { this.setState({ skuError: 'Please, submit required data' }); tempErrorState = false }
+    if (!this.state.name) { this.setState({ nameError: 'Please, submit required data' }); tempErrorState = false }
+    if (!this.state.price) { this.setState({ priceError: 'Please, submit required data' }); tempErrorState = false }
     //validate input
-    if (isNaN(this.state.price) || this.state.price < 0) { this.setState({ priceError: 'Please insert a valid price' }); tempErrorState = false }
+    if (isNaN(this.state.price) || this.state.price < 0) { this.setState({ priceError: 'Please, provide the data of indicated type' }); tempErrorState = false }
 
     if (this.state.dropDownSelection === 'DVD') {
-      if (!this.state.size) { this.setState({ sizeError: 'Please fill in size' }); tempErrorState = false }
-      if (isNaN(this.state.size) || this.state.size < 0) { this.setState({ sizeError: 'Please insert a valid size' }); tempErrorState = false }
+      if (!this.state.size) { this.setState({ sizeError: 'Please, submit required data' }); tempErrorState = false }
+      if (isNaN(this.state.size) || this.state.size < 0) { this.setState({ sizeError: 'Please, provide the data of indicated type' }); tempErrorState = false }
     }
     if (this.state.dropDownSelection === 'Furniture') {
-      if (!this.state.height) { this.setState({ heightError: 'Please fill in height' }); tempErrorState = false }
+      if (!this.state.height) { this.setState({ heightError: 'Please, submit required data' }); tempErrorState = false }
       //validate input
-      if (isNaN(this.state.height) || this.state.height < 0) { this.setState({ heightError: 'Please insert a valid height' }); tempErrorState = false }
-      if (!this.state.width) { this.setState({ widthError: 'Please fill in width' }); tempErrorState = false }
+      if (isNaN(this.state.height) || this.state.height < 0) { this.setState({ heightError: 'Please, provide the data of indicated type' }); tempErrorState = false }
+      if (!this.state.width) { this.setState({ widthError: 'Please, submit required data' }); tempErrorState = false }
       //validate input
-      if (isNaN(this.state.width) || this.state.width < 0) { this.setState({ widthError: 'Please insert a valid width' }); tempErrorState = false }
-      if (!this.state.length) { this.setState({ lengthError: 'Please fill in length' }); tempErrorState = false }
+      if (isNaN(this.state.width) || this.state.width < 0) { this.setState({ widthError: 'Please, provide the data of indicated type' }); tempErrorState = false }
+      if (!this.state.length) { this.setState({ lengthError: 'Please, submit required data' }); tempErrorState = false }
       //validate input
-      if (isNaN(this.state.length) || this.state.length < 0) { this.setState({ lengthError: 'Please insert a valid length' }); tempErrorState = false }
+      if (isNaN(this.state.length) || this.state.length < 0) { this.setState({ lengthError: 'Please, provide the data of indicated type' }); tempErrorState = false }
     }
     if (this.state.dropDownSelection === 'Book') {
-      if (!this.state.weight) { this.setState({ weightError: 'Please fill in weight' }); tempErrorState = false }
+      if (!this.state.weight) { this.setState({ weightError: 'Please, submit required data' }); tempErrorState = false }
       //validate input
-      if (isNaN(this.state.weight) || this.state.weight < 0) { this.setState({ weightError: 'Please insert a valid weight' }); tempErrorState = false }
+      if (isNaN(this.state.weight) || this.state.weight < 0) { this.setState({ weightError: 'Please, provide the data of indicated type' }); tempErrorState = false }
     }
     console.log(tempErrorState)
     return tempErrorState
@@ -132,7 +132,7 @@ class ProductAdd extends React.Component {
           <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
             <h2>Product Add</h2>
             <div className='d-flex justify-content-between'>
-              <form onSubmit={this.handleSubmit} id='product_form' >
+              <form id="product_form" onSubmit={this.handleSubmit}  >
 
                 <button type="submit" className="btn btn-primary m-2" value="save">Save</button>
 
@@ -142,7 +142,7 @@ class ProductAdd extends React.Component {
           </div>
           <hr className='mx-3'></hr>
           <div className='row col-7 d-flex flex-row justify-content-start mx-1'>
-            <form onSubmit={this.handleSubmit}>
+            <form id="product_form" onSubmit={this.handleSubmit}>
 
               <div className="row ">
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">SKU</label>
@@ -165,7 +165,7 @@ class ProductAdd extends React.Component {
 
               <div className="dropdown my-3">
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="productType dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="productType" data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
                   {this.state.dropDownSelection}
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -183,7 +183,7 @@ class ProductAdd extends React.Component {
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="size" name='size' onChange={this.handleChange} />
                   </div>
-                  <p className="mt-4">Description</p>
+                  <p className="mt-4">Please, provide size</p>
 
                   {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
                   {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}
@@ -215,7 +215,7 @@ class ProductAdd extends React.Component {
                       <input type="number" className="form-control form-control" id="length" name='length' onChange={this.handleChange} />
                     </div>
                   </div>
-                  <p className=" mt-4">Description</p>
+                  <p className=" mt-4">Please, provide dimensions</p>
 
                   {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
                   {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}
@@ -235,7 +235,7 @@ class ProductAdd extends React.Component {
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="weight" name='weight' onChange={this.handleChange} />
                   </div>
-                  <p className="mt-4">Description</p>
+                  <p className="mt-4">Please, provide weight</p>
 
                   {this.state.skuError && <p className="mt-4">{this.state.skuError}</p>}
                   {this.state.nameError && <p className="mt-4">{this.state.nameError}</p>}

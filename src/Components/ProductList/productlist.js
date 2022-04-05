@@ -63,7 +63,7 @@ class ProductList extends React.Component {
 
           <div className='d-flex justify-content-between'>
             <Link to='/addproduct' className='btn btn-primary m-2'>
-              Add
+              ADD
             </Link>
             <button
               id='delete-product-btn'
@@ -71,7 +71,7 @@ class ProductList extends React.Component {
               className='btn btn-success m-2'
               onClick={e => this.handleDelete(e)}
             >
-              Mass Delete
+              MASS DELETE
             </button>
           </div>
         </div>

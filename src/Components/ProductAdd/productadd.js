@@ -163,15 +163,15 @@ class ProductAdd extends React.Component {
                 </div>
               </div>
 
-              <div className="dropdown my-3"  id="productType">
-                <label  id="productType" htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
-                <button id="productType" className="btn btn-secondary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
+              <div className="dropdown my-3" >
+                <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Type Switcher</label>
+                <button className="btn btn-secondary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false" name='dropDownSelection'>
                   {this.state.dropDownSelection}
                 </button>
                 <ul id="productType"className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a  className="dropdown-item" onClick={this.handleToggle} id='DVD' name="DVD" value='DVD' >DVD</a></li>
-                  <li><a  className="dropdown-item" onClick={this.handleToggle} id='Furniture' name="Furniture" value='Furniture' >Furniture</a></li>
-                  <li><a   className="dropdown-item" onClick={this.handleToggle} id='Book' name="Book" value='Book '>Book</a></li>
+                  <li><a className="dropdown-item" onClick={this.handleToggle} id="productType" name="DVD" value='DVD' >DVD</a></li>
+                  <li><a className="dropdown-item" onClick={this.handleToggle} id="productType" name="Furniture" value='Furniture' >Furniture</a></li>
+                  <li><a className="dropdown-item" onClick={this.handleToggle} id="productType" name="Book" value='Book '>Book</a></li>
                 </ul>
               </div>
               <div className='my-4'></div>

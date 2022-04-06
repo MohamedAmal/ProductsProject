@@ -26,10 +26,10 @@ class ProductList extends React.Component {
     });
   }
 
-  shouldComponentUpdate() {
-    console.log('should update')
-    return true
-  }
+  // shouldComponentUpdate() {
+  //   console.log('should update')
+  //   return true
+  // }
 
   // async componentDidUpdate() {
   //   if (this.state.deleteAction == true) {

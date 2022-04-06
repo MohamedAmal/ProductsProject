@@ -6,7 +6,7 @@ import ProductCard from './productcard'
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [], deleteAction:false }
+    this.state = { products: [], massDelete: [], deleteAction: false }
     // this.deleteAction = false
   }
   async componentDidMount() {
@@ -14,12 +14,12 @@ class ProductList extends React.Component {
     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
     await axios.get(url).then(response => response.data).then(data => {
       // if (data.length > 0) {
-        console.log('retreive mount data', data)
-        const dvd = data.filter(obj => obj.Type == 'DVD');
-        const furniture = data.filter(obj => obj.Type == 'Furniture');
-        const book = data.filter(obj => obj.Type == 'Book');
-        const viewProducts = [...dvd, ...furniture, ...book]
-        this.setState({ products: viewProducts })
+      console.log('retreive mount data', data)
+      const dvd = data.filter(obj => obj.Type == 'DVD');
+      const furniture = data.filter(obj => obj.Type == 'Furniture');
+      const book = data.filter(obj => obj.Type == 'Book');
+      const viewProducts = [...dvd, ...furniture, ...book]
+      this.setState({ products: viewProducts })
       // }
     }).catch(function (response) {
       console.log('error', response)
@@ -38,18 +38,18 @@ class ProductList extends React.Component {
       const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
       await axios.get(url).then(response => response.data).then(data => {
         // if (data.length > 0) {
-          console.log('retreive update data', data)
-          const dvd = data.filter(obj => obj.Type == 'DVD');
-          const furniture = data.filter(obj => obj.Type == 'Furniture');
-          const book = data.filter(obj => obj.Type == 'Book');
-          const viewProducts = [...dvd, ...furniture, ...book]
-          this.setState({ products: viewProducts })
+        console.log('retreive update data', data)
+        const dvd = data.filter(obj => obj.Type == 'DVD');
+        const furniture = data.filter(obj => obj.Type == 'Furniture');
+        const book = data.filter(obj => obj.Type == 'Book');
+        const viewProducts = [...dvd, ...furniture, ...book]
+        this.setState({ products: viewProducts })
         // }
       }).catch(function (response) {
         console.log('error', response)
       });
+      this.state.deleteAction = false
     }
-    this.state.deleteAction = false
   }
 
 
@@ -66,7 +66,7 @@ class ProductList extends React.Component {
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
 
       // window.location.reload(true)
-      await this.setState({ deleteAction: true })
+      this.setState({ deleteAction: true })
     }
   }
 
@@ -115,7 +115,6 @@ class ProductList extends React.Component {
                 pname={item.Name}
                 type={item.Type}
                 commFunc={e => this.updateState(e)}
-                className="delete-checkbox"
               />
             )
           })}

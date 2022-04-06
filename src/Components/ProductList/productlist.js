@@ -1,4 +1,5 @@
 import React from 'react'
+import * as ReactDOM from 'react-dom';
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
 
@@ -64,7 +65,9 @@ class ProductList extends React.Component {
         url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-
+      if (this.state.products.length == this.state.massDelete.length) {
+        ReactDOM.unmountComponentAtNode(document.getElementsByClassName('delete-checkbox'))
+      }
       // window.location.reload(true)
       this.setState({ deleteAction: true })
     }
@@ -86,7 +89,7 @@ class ProductList extends React.Component {
       return (
         <div className="container">
           <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
-            <h2>Product List</h2>
+            <h2>Product null List</h2>
             <p>{this.props.commState.toString()}</p>
             <p>{this.props.massDelete}</p>
 

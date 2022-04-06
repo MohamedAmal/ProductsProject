@@ -7,7 +7,6 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props)
     this.state = { products: [], massDelete: [], refreshProducts: [] }
-    this.enableUpdate = false
   }
   componentDidMount() {
     // const url = 'http://localhost/index.php/'  // local
@@ -23,27 +22,19 @@ class ProductList extends React.Component {
       console.log('error', response)
     });
   }
-
   componentDidUpdate() {
-    // console.log(this.state.products)
-    // console.log(this.state.massDelete)
   }
-
-  handleDelete = (e) => {
+  async handleDelete(e) {
     // e.preventDefault();
     console.log(this.state.massDelete)
     if (this.state.massDelete.length > 0) {
-      // const tempDelete = this.state.products.filter(e => !this.state.massDelete.includes(e.id))
-      // console.log(tempDelete)
-      // this.setState({ products: })
-      axios({
+      await axios({
         method: 'DELETE',
         // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
         url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-      // this.enableUpdate = true
-      // console.log(this.enableUpdate)
       window.location.reload(true)
     }
   }

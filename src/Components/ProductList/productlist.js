@@ -85,6 +85,7 @@ class ProductList extends React.Component {
                 pname={item.Name}
                 type={item.Type}
                 commFunc={e => this.updateState(e)}
+                className="delete-checkbox"
               />
             )
           })}

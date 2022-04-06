@@ -17,7 +17,7 @@ class ProductCard extends React.Component {
   }
   render() {
     return (
-      <div key={this.props.id_db} className='col-3 p-3 main-card-container' id_db={this.props.id_db} >
+      <div key={this.props.id_db} className='delete-checkbox col-3 p-3 main-card-container' id_db={this.props.id_db} >
         <div className="card" style={{ width: '18rem' }}>
           <div className="form-check m-3 mb-0 ">
 

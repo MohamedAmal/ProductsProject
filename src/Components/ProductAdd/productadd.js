@@ -73,14 +73,14 @@ class ProductAdd extends React.Component {
       //validate input
       if (isNaN(this.state.weight) || this.state.weight < 0) { this.setState({ weightError: 'Please, provide the data of indicated type' }); tempErrorState = false }
     }
-    console.log(tempErrorState)
+    // console.log(tempErrorState)
     return tempErrorState
   }
 
   async handleSubmit(event) {
     event.preventDefault();
     if (this.validate()) {
-      console.log('validate', this.validate())
+      // console.log('validate', this.validate())
       let formData = new FormData();
 
       formData.append('sku', this.state.sku)
@@ -95,8 +95,8 @@ class ProductAdd extends React.Component {
 
       await axios({
         method: 'POST',
-        // url: 'http://localhost/index.php/',  // local
-        url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
+        url: 'http://localhost/index.php/',  // local
+        // url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
         data: formData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
       })
@@ -109,10 +109,10 @@ class ProductAdd extends React.Component {
           console.log(response)
         });
       const redirect = true
-      console.log(redirect)
+      // console.log(redirect)
       this.props.stateCommFunc(redirect)
       setTimeout(() => {
-        console.log('redirect')
+        // console.log('redirect')
         this.setState({
           redirect: true
         })

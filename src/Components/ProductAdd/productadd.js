@@ -77,7 +77,7 @@ class ProductAdd extends React.Component {
     return tempErrorState
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
     if (this.validate()) {
       // console.log('validate', this.validate())
@@ -93,7 +93,7 @@ class ProductAdd extends React.Component {
       formData.append('length', this.state.length)
       formData.append('weight', this.state.weight)
 
-      await axios({
+      axios({
         method: 'POST',
         // url: 'http://localhost/index.php/',  // local
         url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace

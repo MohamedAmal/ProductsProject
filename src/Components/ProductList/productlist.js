@@ -82,47 +82,99 @@ class ProductList extends React.Component {
   }
 
   render() {
-    return (
-      <div className="container">
-        <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
-          <h2>Product List</h2>
-          <p>{this.props.commState.toString()}</p>
-          <p>{this.props.massDelete}</p>
+    if (this.state.products.length == 0) {
+      return (
+        <div className="container">
+          <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
+            <h2>Product List</h2>
+            <p>{this.props.commState.toString()}</p>
+            <p>{this.props.massDelete}</p>
 
-          <div className='d-flex justify-content-between'>
-            <Link to='/addproduct' className='btn btn-primary m-2'>
-              ADD
-            </Link>
-            <button
-              id='delete-product-btn'
-              type='button'
-              className='btn btn-success m-2'
-              onClick={e => this.handleDelete(e)}
-            >
-              MASS DELETE
-            </button>
+            <div className='d-flex justify-content-between'>
+              <Link to='/addproduct' className='btn btn-primary m-2'>
+                ADD
+              </Link>
+              <button
+                id='delete-product-btn'
+                type='button'
+                className='btn btn-success m-2'
+                onClick={e => this.handleDelete(e)}
+              >
+                MASS DELETE
+              </button>
+            </div>
+          </div>
+          <hr className='mx-3'></hr>
+
+          <div className='row d-flex flex-row flex-wrap justify-content-start p-0 m-0'>
+            {this.state.products.map((item, key) => {
+              return (
+                <ProductCard
+                  key={key}
+                  id_db={item.id}
+                  sku={item.SKU}
+                  pname={item.Name}
+                  type={item.Type}
+                  commFunc={e => this.updateState(e)}
+                />
+              )
+            })}
           </div>
         </div>
-        <hr className='mx-3'></hr>
+      )
+    }
 
-        <div className='row d-flex flex-row flex-wrap justify-content-start p-0 m-0'>
-          {this.state.products.map((item, key) => {
-            return (
-              <ProductCard
-                key={key}
-                id_db={item.id}
-                sku={item.SKU}
-                pname={item.Name}
-                type={item.Type}
-                commFunc={e => this.updateState(e)}
-              />
-            )
-          })}
+    else {
+      return (
+        <div className="container">
+          <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
+            <h2>Product List</h2>
+            <p>{this.props.commState.toString()}</p>
+            <p>{this.props.massDelete}</p>
+
+            <div className='d-flex justify-content-between'>
+              <Link to='/addproduct' className='btn btn-primary m-2'>
+                ADD
+              </Link>
+              <button
+                id='delete-product-btn'
+                type='button'
+                className='btn btn-success m-2'
+                onClick={e => this.handleDelete(e)}
+              >
+                MASS DELETE
+              </button>
+            </div>
+          </div>
+          <hr className='mx-3'></hr>
         </div>
-      </div>
-    )
+      )
+    }
+
   }
 }
 export default ProductList
 
 
+{/* <div className="container">
+<div className='d-flex justify-content-between mt-4 mx-3 p-0'>
+  <h2>Product List</h2>
+  <p>{this.props.commState.toString()}</p>
+  <p>{this.props.massDelete}</p>
+
+  <div className='d-flex justify-content-between'>
+    <Link to='/addproduct' className='btn btn-primary m-2'>
+      ADD
+    </Link>
+    <button
+      id='delete-product-btn'
+      type='button'
+      className='btn btn-success m-2'
+      onClick={e => this.handleDelete(e)}
+    >
+      MASS DELETE
+    </button>
+  </div>
+</div>
+<hr className='mx-3'></hr>
+</div> */}

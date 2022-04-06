@@ -8,10 +8,10 @@ class ProductList extends React.Component {
     super(props)
     this.state = { products: [], massDelete: [], refreshProducts: [] }
   }
-  componentDidMount() {
+  async componentDidMount() {
     // const url = 'http://localhost/index.php/'  // local
     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
-    axios.get(url).then(response => response.data).then(data => {
+    await axios.get(url).then(response => response.data).then(data => {
       console.log('ret data', data)
       const dvd = data.filter(obj => obj.Type == 'DVD');
       const furniture = data.filter(obj => obj.Type == 'Furniture');
@@ -49,6 +49,8 @@ class ProductList extends React.Component {
       this.setState({ massDelete: tempArr })
     }
   }
+
+
   render() {
     return (
       <div className="container">
@@ -72,6 +74,7 @@ class ProductList extends React.Component {
           </div>
         </div>
         <hr className='mx-3'></hr>
+
         <div className='row d-flex flex-row flex-wrap justify-content-start p-0 m-0'>
           {this.state.products.map((item, key) => {
             return (
@@ -82,7 +85,6 @@ class ProductList extends React.Component {
                 pname={item.Name}
                 type={item.Type}
                 commFunc={e => this.updateState(e)}
-                className="delete-checkbox"
               />
             )
           })}

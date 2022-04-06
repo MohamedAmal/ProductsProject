@@ -21,7 +21,7 @@ class ProductCard extends React.Component {
         <div className="card" style={{ width: '18rem' }}>
           <div className="form-check m-3 mb-0 ">
 
-            <input className="delete-checkbox form-check-input" checked={this.state.toggleData.isChecked} defaultChecked={false}
+            <input className="delete-checkbox form-check-input"  defaultChecked={false}
               onClick={(() => this.toggleChange(this.props.id_db, this.props.sku, this.props.pname, this.props.price))}
               type="checkbox" value="" id="flexCheckDefault " />
 
@@ -39,3 +39,4 @@ class ProductCard extends React.Component {
   }
 }
 export default ProductCard;
+// checked={this.state.toggleData.isChecked}

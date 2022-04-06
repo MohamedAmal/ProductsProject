@@ -6,7 +6,7 @@ import ProductCard from './productcard'
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [], refresh: false }
+    this.state = { products: [], massDelete: [], refreshProducts: [] }
     this.enableUpdate = false
   }
   componentDidMount() {
@@ -24,13 +24,14 @@ class ProductList extends React.Component {
   }
 
   componentDidUpdate() {
-
+    console.log(this.state.products)
   }
 
   handleDelete = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(this.state.massDelete)
     if (this.state.massDelete.length > 0) {
+      this.setState({ products: this.state.products.filter(e => !this.state.massDelete.includes(e.id)) })
       axios({
         method: 'DELETE',
         // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
@@ -39,7 +40,7 @@ class ProductList extends React.Component {
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
       // this.enableUpdate = true
       // console.log(this.enableUpdate)
-      window.location.reload(false)
+      window.location.reload(true)
     }
   }
 

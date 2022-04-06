@@ -24,8 +24,7 @@ class ProductAdd extends React.Component {
     const state = this.state
     state.dropDownSelection = e.target.value
     this.setState(state);
-    console.log('nnn',e.target.value)
-    // console.log('state', this.state)
+    console.log('nnn', e.target.value)
     switch (state.dropDownSelection) {
       case 'DVD':
         state.height = null
@@ -169,9 +168,9 @@ class ProductAdd extends React.Component {
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label ">Type Switcher</label>
                 <div className="col-sm-5">
                   <select onClick={this.handleToggle} style={{ width: "auto" }} id="productType" className=" form-select" aria-label="Default select example">
-                    <option  name="DVD" value="DVD" defaultValue="selected" >DVD</option>
-                    <option  name="Furniture" value="Furniture">Furniture</option>
-                    <option  name="Book" value="Book">Book</option>
+                    <option name="DVD" value="DVD" defaultValue="selected" >DVD</option>
+                    <option name="Furniture" value="Furniture">Furniture</option>
+                    <option name="Book" value="Book">Book</option>
                   </select>
                 </div>
 

@@ -30,7 +30,7 @@ class ProductList extends React.Component {
   }
 
   handleDelete = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(this.state.massDelete)
     if (this.state.massDelete.length > 0) {
       // const tempDelete = this.state.products.filter(e => !this.state.massDelete.includes(e.id))

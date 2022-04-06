@@ -13,6 +13,7 @@ class ProductList extends React.Component {
     // const url = 'http://localhost/index.php/'  // local
     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
     axios.get(url).then(response => response.data).then(data => {
+      console.log('ret data', data)
       const dvd = data.filter(obj => obj.Type == 'DVD');
       const furniture = data.filter(obj => obj.Type == 'Furniture');
       const book = data.filter(obj => obj.Type == 'Book');
@@ -24,14 +25,17 @@ class ProductList extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.products)
+    // console.log(this.state.products)
+    // console.log(this.state.massDelete)
   }
 
   handleDelete = (e) => {
     e.preventDefault();
     console.log(this.state.massDelete)
     if (this.state.massDelete.length > 0) {
-      this.setState({ products: this.state.products.filter(e => !this.state.massDelete.includes(e.id)) })
+      // const tempDelete = this.state.products.filter(e => !this.state.massDelete.includes(e.id))
+      // console.log(tempDelete)
+      // this.setState({ products: })
       axios({
         method: 'DELETE',
         // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local

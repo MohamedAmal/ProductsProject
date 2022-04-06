@@ -77,7 +77,7 @@ class ProductAdd extends React.Component {
     return tempErrorState
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     if (this.validate()) {
       console.log('validate', this.validate())
@@ -93,7 +93,7 @@ class ProductAdd extends React.Component {
       formData.append('length', this.state.length)
       formData.append('weight', this.state.weight)
 
-      axios({
+      await axios({
         method: 'POST',
         // url: 'http://localhost/index.php/',  // local
         url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
@@ -168,7 +168,7 @@ class ProductAdd extends React.Component {
                 <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label ">Type Switcher</label>
                 <div className="col-sm-5">
                   <select onClick={this.handleToggle} style={{ width: "auto" }} id="productType" className=" form-select" aria-label="Default select example">
-                    <option name="DVD" value="DVD" defaultValue="selected" >DVD</option>
+                    <option name="DVD" value="DVD" defaultValue="DVD" >DVD</option>
                     <option name="Furniture" value="Furniture">Furniture</option>
                     <option name="Book" value="Book">Book</option>
                   </select>

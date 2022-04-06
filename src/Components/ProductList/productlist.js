@@ -31,27 +31,27 @@ class ProductList extends React.Component {
     return true
   }
 
-  async componentDidUpdate() {
-    if (this.state.deleteAction == true) {
-      console.log('deleteAction', this.state.deleteAction)
-      // const url = 'http://localhost/index.php/'  // local
-      const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
-      await axios.get(url).then(response => response.data).then(data => {
-        if (data.length > 0) {
-          console.log('retreive update data', data)
-          const dvd = data.filter(obj => obj.Type == 'DVD');
-          const furniture = data.filter(obj => obj.Type == 'Furniture');
-          const book = data.filter(obj => obj.Type == 'Book');
-          const viewProducts = [...dvd, ...furniture, ...book]
-          this.setState({ products: viewProducts })
-        }
-        else { this.setState({ products: null }) }
-      }).catch(function (response) {
-        console.log('error', response)
-      });
-      this.state.deleteAction = false
-    }
-  }
+  // async componentDidUpdate() {
+  //   if (this.state.deleteAction == true) {
+  //     console.log('deleteAction', this.state.deleteAction)
+  //     // const url = 'http://localhost/index.php/'  // local
+  //     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+  //     await axios.get(url).then(response => response.data).then(data => {
+  //       if (data.length > 0) {
+  //         console.log('retreive update data', data)
+  //         const dvd = data.filter(obj => obj.Type == 'DVD');
+  //         const furniture = data.filter(obj => obj.Type == 'Furniture');
+  //         const book = data.filter(obj => obj.Type == 'Book');
+  //         const viewProducts = [...dvd, ...furniture, ...book]
+  //         this.setState({ products: viewProducts })
+  //       }
+  //       else { this.setState({ products: null }) }
+  //     }).catch(function (response) {
+  //       console.log('error', response)
+  //     });
+  //     this.state.deleteAction = false
+  //   }
+  // }
 
 
   async handleDelete(e) {

@@ -20,7 +20,7 @@ class ProductList extends React.Component {
         const viewProducts = [...dvd, ...furniture, ...book]
         this.setState({ products: viewProducts })
       }
-      else { this.setState({ products: null }) }
+      else { this.setState({ products: [] }) }
     }).catch(function (response) {
       console.log('error', response)
     });

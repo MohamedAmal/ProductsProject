@@ -17,7 +17,7 @@ class ParentComponent extends React.Component {
   }
   render() {
     return (
-      <body>
+      // <body>
         < main>
           <div className="container">
             <Routes>
@@ -26,7 +26,7 @@ class ParentComponent extends React.Component {
             </Routes>
           </div>
         </main>
-      </body>
+      // </body>
     )
   }
 }

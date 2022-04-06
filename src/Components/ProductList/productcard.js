@@ -17,11 +17,11 @@ class ProductCard extends React.Component {
   }
   render() {
     return (
-      <div key={this.props.id_db} className='delete-checkbox col-3 p-3 main-card-container' id_db={this.props.id_db} >
+      <div key={this.props.id_db} className='col-3 p-3 main-card-container' id_db={this.props.id_db} >
         <div className="card" style={{ width: '18rem' }}>
           <div className="form-check m-3 mb-0 ">
 
-            <input className="delete-checkbox form-check-input" Checked={this.state.toggleData.isChecked} defaultChecked={false}
+            <input className="delete-checkbox form-check-input" checked={this.state.toggleData.isChecked} defaultChecked={false}
               onClick={(() => this.toggleChange(this.props.id_db, this.props.sku, this.props.pname, this.props.price))}
               type="checkbox" value="" id="flexCheckDefault " />
 

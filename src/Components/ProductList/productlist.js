@@ -65,8 +65,8 @@ class ProductList extends React.Component {
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
 
-      // window.location.reload(true)
-      this.setState({ deleteAction: true })
+      window.location.reload(true)
+      // this.setState({ deleteAction: true })
     }
   }
 

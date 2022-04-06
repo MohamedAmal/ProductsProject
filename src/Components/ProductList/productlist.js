@@ -8,10 +8,10 @@ class ProductList extends React.Component {
     super(props)
     this.state = { products: [], massDelete: [], refreshProducts: [] }
   }
-  async componentDidMount() {
+  componentDidMount() {
     // const url = 'http://localhost/index.php/'  // local
     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
-    await axios.get(url).then(response => response.data).then(data => {
+    axios.get(url).then(response => response.data).then(data => {
       console.log('ret data', data)
       const dvd = data.filter(obj => obj.Type == 'DVD');
       const furniture = data.filter(obj => obj.Type == 'Furniture');

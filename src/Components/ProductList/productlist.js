@@ -8,10 +8,10 @@ class ProductList extends React.Component {
     super(props)
     this.state = { products: [], massDelete: [], refreshProducts: [] }
   }
-  componentDidMount() {
+  async componentDidMount() {
     // const url = 'http://localhost/index.php/'  // local
     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
-    axios.get(url).then(response => response.data).then(data => {
+    await axios.get(url).then(response => response.data).then(data => {
       console.log('ret data', data)
       const dvd = data.filter(obj => obj.Type == 'DVD');
       const furniture = data.filter(obj => obj.Type == 'Furniture');
@@ -25,7 +25,7 @@ class ProductList extends React.Component {
   componentDidUpdate() {
   }
   async handleDelete(e) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(this.state.massDelete)
     if (this.state.massDelete.length > 0) {
       await axios({

@@ -7,20 +7,20 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props)
     this.state = { products: [], massDelete: [], deleteAction: false }
-    // this.deleteAction = false
   }
   async componentDidMount() {
     // const url = 'http://localhost/index.php/'  // local
     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
     await axios.get(url).then(response => response.data).then(data => {
-      // if (data.length > 0) {
-      console.log('retreive mount data', data)
-      const dvd = data.filter(obj => obj.Type == 'DVD');
-      const furniture = data.filter(obj => obj.Type == 'Furniture');
-      const book = data.filter(obj => obj.Type == 'Book');
-      const viewProducts = [...dvd, ...furniture, ...book]
-      this.setState({ products: viewProducts })
-      // }
+      if (data.length > 0) {
+        console.log('retreive mount data', data)
+        const dvd = data.filter(obj => obj.Type == 'DVD');
+        const furniture = data.filter(obj => obj.Type == 'Furniture');
+        const book = data.filter(obj => obj.Type == 'Book');
+        const viewProducts = [...dvd, ...furniture, ...book]
+        this.setState({ products: viewProducts })
+      }
+      else { this.setState({ products: null }) }
     }).catch(function (response) {
       console.log('error', response)
     });
@@ -31,31 +31,31 @@ class ProductList extends React.Component {
     return true
   }
 
-  // async componentDidUpdate() {
-  //   if (this.state.deleteAction == true) {
-  //     console.log('deleteAction', this.state.deleteAction)
-  //     const url = 'http://localhost/index.php/'  // local
-  //     // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
-  //     await axios.get(url).then(response => response.data).then(data => {
-  //       // if (data.length > 0) {
-  //       console.log('retreive update data', data)
-  //       const dvd = data.filter(obj => obj.Type == 'DVD');
-  //       const furniture = data.filter(obj => obj.Type == 'Furniture');
-  //       const book = data.filter(obj => obj.Type == 'Book');
-  //       const viewProducts = [...dvd, ...furniture, ...book]
-  //       this.setState({ products: viewProducts })
-  //       // }
-  //     }).catch(function (response) {
-  //       console.log('error', response)
-  //     });
-  //     this.state.deleteAction = false
-  //   }
-  // }
+  async componentDidUpdate() {
+    if (this.state.deleteAction == true) {
+      console.log('deleteAction', this.state.deleteAction)
+      // const url = 'http://localhost/index.php/'  // local
+      const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+      await axios.get(url).then(response => response.data).then(data => {
+        if (data.length > 0) {
+          console.log('retreive update data', data)
+          const dvd = data.filter(obj => obj.Type == 'DVD');
+          const furniture = data.filter(obj => obj.Type == 'Furniture');
+          const book = data.filter(obj => obj.Type == 'Book');
+          const viewProducts = [...dvd, ...furniture, ...book]
+          this.setState({ products: viewProducts })
+        }
+        else { this.setState({ products: null }) }
+      }).catch(function (response) {
+        console.log('error', response)
+      });
+      this.state.deleteAction = false
+    }
+  }
 
 
   async handleDelete(e) {
     // e.preventDefault();
-    // this.deleteAction = true
     console.log(this.state.massDelete)
     if (this.state.massDelete.length > 0) {
       await axios({
@@ -65,8 +65,8 @@ class ProductList extends React.Component {
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
 
-      window.location.reload(true)
-      // this.setState({ deleteAction: true })
+      // window.location.reload(true)
+      this.setState({ deleteAction: true })
     }
   }
 
@@ -124,3 +124,5 @@ class ProductList extends React.Component {
   }
 }
 export default ProductList
+
+

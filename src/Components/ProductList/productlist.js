@@ -10,8 +10,8 @@ class ProductList extends React.Component {
     // this.deleteAction = false
   }
   async componentDidMount() {
-    const url = 'http://localhost/index.php/'  // local
-    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+    // const url = 'http://localhost/index.php/'  // local
+    const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
     await axios.get(url).then(response => response.data).then(data => {
       // if (data.length > 0) {
       console.log('retreive mount data', data)
@@ -60,8 +60,8 @@ class ProductList extends React.Component {
     if (this.state.massDelete.length > 0) {
       await axios({
         method: 'DELETE',
-        url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-        // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+        // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+        url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
 

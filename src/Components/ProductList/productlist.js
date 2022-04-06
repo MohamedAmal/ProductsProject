@@ -105,21 +105,6 @@ class ProductList extends React.Component {
             </div>
           </div>
           <hr className='mx-3'></hr>
-
-          <div className='row d-flex flex-row flex-wrap justify-content-start p-0 m-0'>
-            {this.state.products.map((item, key) => {
-              return (
-                <ProductCard
-                  key={key}
-                  id_db={item.id}
-                  sku={item.SKU}
-                  pname={item.Name}
-                  type={item.Type}
-                  commFunc={e => this.updateState(e)}
-                />
-              )
-            })}
-          </div>
         </div>
       )
     }
@@ -147,6 +132,21 @@ class ProductList extends React.Component {
             </div>
           </div>
           <hr className='mx-3'></hr>
+
+          <div className='row d-flex flex-row flex-wrap justify-content-start p-0 m-0'>
+            {this.state.products.map((item, key) => {
+              return (
+                <ProductCard
+                  key={key}
+                  id_db={item.id}
+                  sku={item.SKU}
+                  pname={item.Name}
+                  type={item.Type}
+                  commFunc={e => this.updateState(e)}
+                />
+              )
+            })}
+          </div>
         </div>
       )
     }

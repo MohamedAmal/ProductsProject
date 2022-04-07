@@ -17,13 +17,14 @@ class ProductCard extends React.Component {
   }
   render() {
     return (
-      <div  className='col-3 p-3 main-card-container' id_db={this.props.id_db} >
+      <div className='col-3 p-3 main-card-container' id_db={this.props.id_db} >
         <div className="card" style={{ width: '18rem' }}>
           <div className="form-check m-3 mb-0 ">
 
-            <input className="delete-checkbox form-check-input"  defaultChecked={false}
-              onChange={(() => this.toggleChange(this.props.id_db, this.props.sku, this.props.pname, this.props.price))}
-              type="checkbox" value="" id="flexCheckDefault " />
+            <input className="delete-checkbox form-check-input" checked={this.state.toggleData.isChecked} defaultChecked={false}
+              // onClick={(() => this.toggleChange(this.props.id_db))}
+              onChange={(() => this.toggleChange(this.props.id_db))}
+              type="checkbox" id="flexCheckDefault" />
 
           </div>
           <div className="card-body">
@@ -39,6 +40,7 @@ class ProductCard extends React.Component {
   }
 }
 export default ProductCard;
+// defaultChecked={false}
 // checked={this.state.toggleData.isChecked}
 
               // <div key={key} className='delete-checkbox col-3 p-3 main-card-container' commFunc={e => this.updateState(e)}>

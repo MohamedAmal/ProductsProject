@@ -9,10 +9,10 @@ class ProductList extends React.Component {
     super(props)
     this.state = { products: [], massDelete: [], deleteAction: false }
   }
-  async componentDidMount() {
-    // const url = 'http://localhost/index.php/'  // local
-    const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
-    await axios.get(url).then(response => response.data).then(data => {
+   componentDidMount() {
+    const url = 'http://localhost/index.php/'  // local
+    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+     axios.get(url).then(response => response.data).then(data => {
       if (data.length > 0) {
         console.log('retreive mount data', data)
         const dvd = data.filter(obj => obj.Type == 'DVD');
@@ -23,20 +23,21 @@ class ProductList extends React.Component {
       }
       else { this.setState({ products: [] }) }
     }).catch(function (response) {
-      console.log('error', response)
+      // console.log('error', response)
     });
   }
 
   shouldComponentUpdate() {
-    console.log('should update')
+    // console.log('should update')
     return true
   }
 
   async componentDidUpdate() {
-    if (this.state.deleteAction == true) {
-      console.log('deleteAction', this.state.deleteAction)
-      // const url = 'http://localhost/index.php/'  // local
-      const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+    if ( this.state.deleteAction == true) {
+      console.log('massDelete',this.state.massDelete)
+      // console.log('deleteAction')
+      const url = 'http://localhost/index.php/'  // local
+      // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
       await axios.get(url).then(response => response.data).then(data => {
         if (data.length > 0) {
           console.log('retreive update data', data)
@@ -50,26 +51,28 @@ class ProductList extends React.Component {
       }).catch(function (response) {
         console.log('error', response)
       });
-      this.state.deleteAction = false
+      this.setState({ deleteAction: false })
     }
   }
 
 
   async handleDelete(e) {
     // e.preventDefault();
-    console.log(this.state.massDelete)
+    // console.log(this.state.massDelete)
     if (this.state.massDelete.length > 0) {
       await axios({
         method: 'DELETE',
-        // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-        url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+        url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+        // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-      if (this.state.products.length == this.state.massDelete.length) {
-        ReactDOM.unmountComponentAtNode(document.getElementsByClassName('delete-checkbox'))
-      }
-      // window.location.reload(true)
+      // if (this.state.products.length == this.state.massDelete.length) {
+      //   ReactDOM.unmountComponentAtNode(document.getElementsByClassName('delete-checkbox'))
+      // }
       this.setState({ deleteAction: true })
+      this.setState({ massDelete: [] })
+      window.location.reload(true)
+      
     }
   }
 
@@ -102,9 +105,8 @@ class ProductList extends React.Component {
                 type='button'
                 className='btn btn-success m-2'
                 onClick={e => this.handleDelete(e)}
-              >
-                MASS DELETE
-              </button>
+              >MASS DELETE</button>
+
             </div>
           </div>
           <hr className='mx-3'></hr>

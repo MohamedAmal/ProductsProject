@@ -22,7 +22,7 @@ class ProductCard extends React.Component {
           <div className="form-check m-3 mb-0 ">
 
             <input className="delete-checkbox form-check-input"  defaultChecked={false}
-              onClick={(() => this.toggleChange(this.props.id_db, this.props.sku, this.props.pname, this.props.price))}
+              onChange={(() => this.toggleChange(this.props.id_db, this.props.sku, this.props.pname, this.props.price))}
               type="checkbox" value="" id="flexCheckDefault " />
 
           </div>

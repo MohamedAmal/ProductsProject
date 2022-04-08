@@ -84,33 +84,33 @@ class ProductList extends React.Component {
   }
 
   render() {
-    if (this.state.products.length == 0) {
-      return (
-        <div className="container">
-          <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
-            <h2>Product null List</h2>
-            <p>{this.props.commState.toString()}</p>
-            <p>{this.props.massDelete}</p>
+    // if (this.state.products.length == 0) {
+    //   return (
+    //     <div className="container">
+    //       <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
+    //         <h2>Product List</h2>
+    //         <p>{this.props.commState.toString()}</p>
+    //         <p>{this.props.massDelete}</p>
 
-            <div className='d-flex justify-content-between'>
-              <Link to='/addproduct' className='btn btn-primary m-2'>
-                ADD
-              </Link>
-              <button
-                id='delete-product-btn'
-                type='button'
-                className='btn btn-success m-2'
-                onClick={e => this.handleDelete(e)}
-              >MASS DELETE</button>
+    //         <div className='d-flex justify-content-between'>
+    //           <Link to='/addproduct' className='btn btn-primary m-2'>
+    //             ADD
+    //           </Link>
+    //           <button
+    //             id='delete-product-btn'
+    //             type='button'
+    //             className='btn btn-success m-2'
+    //             onClick={e => this.handleDelete(e)}
+    //           >MASS DELETE</button>
 
-            </div>
-          </div>
-          <hr className='mx-3'></hr>
-        </div>
-      )
-    }
+    //         </div>
+    //       </div>
+    //       <hr className='mx-3'></hr>
+    //     </div>
+    //   )
+    // }
 
-    else {
+    // else {
       return (
         <div className="container">
           <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
@@ -150,7 +150,7 @@ class ProductList extends React.Component {
           </div>
         </div>
       )
-    }
+    // }
 
   }
 }

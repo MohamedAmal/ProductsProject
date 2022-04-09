@@ -12,11 +12,10 @@ class ProductList extends React.Component {
     this.state = { products: [], massDelete: [], deleteAction: false, refreshBoxes: false }
   }
   componentDidMount() {
-    // const url = 'http://localhost/index.php/'  // local
-    const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+    const url = 'http://localhost/index.php/'  // local
+    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
     axios.get(url).then(response => response.data).then(data => {
       if (data.length > 0) {
-        // console.log('retreive mount data', data) 
         const dvd = data.filter(obj => obj.Type == 'DVD');
         const furniture = data.filter(obj => obj.Type == 'Furniture');
         const book = data.filter(obj => obj.Type == 'Book');
@@ -35,23 +34,19 @@ class ProductList extends React.Component {
 
   async componentDidUpdate() {
     if (this.state.deleteAction == true) {
-      // console.log('massDelete', this.state.massDelete)
-      // this.setState({ refreshBoxes: true })
-      // const url = 'http://localhost/index.php/'  // local
-      const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+
+      const url = 'http://localhost/index.php/'  // local
+      // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
       await axios.get(url).then(response => response.data).then(data => {
         if (data.length > 0) {
-          // console.log('retreive update data', data)
           const dvd = data.filter(obj => obj.Type == 'DVD');
           const furniture = data.filter(obj => obj.Type == 'Furniture');
           const book = data.filter(obj => obj.Type == 'Book');
           const viewProducts = [...dvd, ...furniture, ...book]
           this.setState({ products: viewProducts })
-          // this.setState({ refreshBoxes: false })
         }
         else {
           this.setState({ products: [] })
-          // this.setState({ refreshBoxes: false })
         }
       }).catch(function (response) {
         console.log('error', response)
@@ -64,11 +59,10 @@ class ProductList extends React.Component {
   async handleDelete(e) {
 
     if (this.state.massDelete.length > 0) {
-      // this.setState({ refreshBoxes: true })
       await axios({
         method: 'DELETE',
-        // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-        url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+        url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+        // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
       this.setState({ deleteAction: true })
@@ -129,9 +123,9 @@ class ProductList extends React.Component {
         </div>
 
         <div className={`${footerStyles.footer} d-flex justify-content-center `}>
-          <footer className='container d-flex justify-content-center text-center p-0 m-4' >
-            <div className='container d-flex flex-column justify-content-center'  >
-              <hr className='p-0 my-4' style={{ border: '1px solid black' }}></hr>
+          <footer className='container d-flex justify-content-center text-center p-0' >
+            <div className='container d-flex flex-column justify-content-center p-4 pt-0'  >
+              <hr className='p-0 m-3 mt-2' style={{ border: '1px solid black' }}></hr>
               Scandiweb Test assignment
             </div>
           </footer>

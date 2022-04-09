@@ -1,6 +1,7 @@
 footer {
     color: "white";
-    position: absolute !important;
-    bottom: 0 !important;
-    margin-top:auto !important;
+    position: fixed !important;
+    bottom: 0px !important;
+    margin-top: auto !important;
+    background-color: white;
 }

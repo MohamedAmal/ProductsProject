@@ -41,5 +41,4 @@ class ProductCard extends React.Component {
   }
 }
 export default ProductCard;
-// defaultChecked={this.state.toggleData.isChecked}
 

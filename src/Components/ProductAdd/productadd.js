@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import footerStyles from '../../ParentComponent/footer.module.css'
 class ProductAdd extends React.Component {
   constructor(props) {
     super(props);
@@ -47,9 +48,7 @@ class ProductAdd extends React.Component {
   validate = () => {
     let tempErrorState = true
     //validate empty input
-    if (!this.state.sku) { this.setState({ skuError: 'Please, submit required data' }); tempErrorState = false }
-    if (!this.state.name) { this.setState({ nameError: 'Please, submit required data' }); tempErrorState = false }
-    if (!this.state.price) { this.setState({ priceError: 'Please, submit required data' }); tempErrorState = false }
+    if (!this.state.sku || !this.state.name || !this.state.price) { this.setState({ skuError: 'Please, submit required data' }); tempErrorState = false }
     //validate input
     if (isNaN(this.state.price) || this.state.price < 0) { this.setState({ priceError: 'Please, provide the data of indicated type' }); tempErrorState = false }
 
@@ -172,7 +171,7 @@ class ProductAdd extends React.Component {
 
               {
                 this.state.dropDownSelection === 'DVD' &&
-                <div className="row mt-4">
+                <div className="row">
                   <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Size (MB)</label>
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="size" name='size' onChange={this.handleChange} />
@@ -191,7 +190,7 @@ class ProductAdd extends React.Component {
               {
                 this.state.dropDownSelection === 'Furniture' &&
                 <div>
-                  <div className="row mt-4">
+                  <div className="row ">
                     <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Height (CM)</label>
                     <div className="col-sm-5">
                       <input type="number" className="form-control form-control" id="height" name='height' onChange={this.handleChange} />
@@ -224,7 +223,7 @@ class ProductAdd extends React.Component {
 
               {
                 this.state.dropDownSelection === 'Book' &&
-                <div className="row my-4">
+                <div className="row ">
                   <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label">Weight (KG)</label>
                   <div className="col-sm-5">
                     <input type="number" className="form-control form-control" id="weight" name='weight' onChange={this.handleChange} />
@@ -241,11 +240,19 @@ class ProductAdd extends React.Component {
               }
             </form>
           </div >
+
+          <div className={`${footerStyles.footer} d-flex justify-content-center ` }>
+            <footer className='container d-flex justify-content-center text-center p-0 m-4' >
+              <div className='container d-flex flex-column justify-content-center'  >
+                <hr className='p-0 my-4' style={{ border: '1px solid black' }}></hr>
+                Scandiweb Test assignment
+              </div>
+            </footer>
+          </div>
         </div >
+
       )
     }
   }
 }
 export default ProductAdd;
-
-

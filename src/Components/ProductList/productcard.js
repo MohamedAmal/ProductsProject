@@ -16,6 +16,7 @@ class ProductCard extends React.Component {
       this.props.commFunc(obj)
     }
   }
+  
   render() {
     return (
       <div className='col-3 p-3 main-card-container' id_db={this.props.id_db} >

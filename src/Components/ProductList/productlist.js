@@ -69,8 +69,8 @@ class ProductList extends React.Component {
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
       
-      setTimeout(() => this.setState({ products: [] }), 1000)
-      this.setState({ massDelete: [], deleteAction: true })
+      setTimeout(() => this.setState({ products: [],massDelete: [], deleteAction: true }), 1000)
+      // this.setState({ massDelete: [], deleteAction: true })
       // setTimeout is setto avoid any possible remote server delay 
 
     }

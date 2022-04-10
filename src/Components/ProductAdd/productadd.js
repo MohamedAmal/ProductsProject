@@ -241,14 +241,14 @@ class ProductAdd extends React.Component {
             </form>
           </div >
 
-          <div className={`${footerStyles.footer} d-flex justify-content-center ` }>
-            <footer className='container d-flex justify-content-center text-center p-0 m-4' >
-              <div className='container d-flex flex-column justify-content-center'  >
-                <hr className='p-0 my-4' style={{ border: '1px solid black' }}></hr>
-                Scandiweb Test assignment
-              </div>
-            </footer>
-          </div>
+          <div className={`${footerStyles.footer} d-flex justify-content-center `}>
+          <footer className='container d-flex justify-content-center text-center p-0' >
+            <div className='container d-flex flex-column justify-content-center p-4 pt-0'  >
+              <hr className='p-0 m-3 mt-2' style={{ border: '1px solid black' }}></hr>
+              Scandiweb Test assignment
+            </div>
+          </footer>
+        </div>
         </div >
 
       )

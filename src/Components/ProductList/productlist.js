@@ -36,6 +36,7 @@ class ProductList extends React.Component {
 
   async componentDidUpdate() {
     if (this.state.deleteAction == true) {
+      this.setState({ products: [] })
 
       // const url = 'http://localhost/index.php/'  // local
       const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
@@ -70,7 +71,7 @@ class ProductList extends React.Component {
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
       // this.setState({ massDelete: [] })
       // this.setState({ products: [] })
-      this.setState({products: [], massDelete: [], deleteAction: true  })
+      this.setState({ massDelete: [], deleteAction: true })
 
     }
   }

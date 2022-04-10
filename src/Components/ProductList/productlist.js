@@ -68,9 +68,9 @@ class ProductList extends React.Component {
         url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-      this.setState({ massDelete: [] })
-      this.setState({ products: [] })
-      this.setState({ deleteAction: true })
+      // this.setState({ massDelete: [] })
+      // this.setState({ products: [] })
+      this.setState({products: [], massDelete: [], deleteAction: true  })
 
     }
   }

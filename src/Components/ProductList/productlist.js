@@ -12,8 +12,8 @@ class ProductList extends React.Component {
     this.state = { products: [], massDelete: [], deleteAction: false }
   }
   componentDidMount() {
-    // const url = 'http://localhost/index.php/'  // local
-    const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+    const url = 'http://localhost/index.php/'  // local
+    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
 
     axios.get(url).then(response => response.data).then(data => {
       if (data.length > 0) {
@@ -30,15 +30,15 @@ class ProductList extends React.Component {
     });
   }
 
-  shouldComponentUpdate() {
-    return true
-  }
+  // shouldComponentUpdate() {
+  //   return true
+  // }
 
   async componentDidUpdate() {
-    if (this.state.deleteAction == true) {
+    if (this.state.deleteAction == true ) {
 
-      // const url = 'http://localhost/index.php/'  // local
-      const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+      const url = 'http://localhost/index.php/'  // local
+      // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
       await axios.get(url).then(response => response.data).then(data => {
         if (data.length > 0) {
           const dvd = data.filter(obj => obj.Type == 'DVD');
@@ -64,14 +64,12 @@ class ProductList extends React.Component {
     if (this.state.massDelete.length > 0) {
       await axios({
         method: 'DELETE',
-        // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-        url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+        url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+        // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-      // this.setState({ massDelete: [] })
-      // this.setState({ products: [] })
+      this.setState({ products: [] }) 
       this.setState({ massDelete: [], deleteAction: true })
-      this.setState({ products: [] })
 
     }
   }

@@ -6,7 +6,10 @@ class ProductCard extends React.Component {
       toggleData: { id: null, isChecked: false }
     }
   }
-
+  shouldComponentUpdate() {
+    return true
+  }
+  
   toggleChange = (e, id) => {
     if (e.target.checked == true) {
       const obj = {

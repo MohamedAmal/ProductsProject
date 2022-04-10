@@ -30,12 +30,12 @@ class ProductList extends React.Component {
     });
   }
 
-  // shouldComponentUpdate() {
-  //   return true
-  // }
+  shouldComponentUpdate() {
+    return true
+  }
 
   async componentDidUpdate() {
-    if (this.state.deleteAction == true ) {
+    if (this.state.deleteAction == true) {
 
       // const url = 'http://localhost/index.php/'  // local
       const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
@@ -68,8 +68,10 @@ class ProductList extends React.Component {
         url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-      this.setState({ products: [] }) 
       this.setState({ massDelete: [], deleteAction: true })
+
+      // setTimeout is setto avoid any possible remote server delay 
+      setTimeout(() => this.setState({ products: [] }), 1000)
 
     }
   }

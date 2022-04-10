@@ -11,13 +11,13 @@ class ProductCard extends React.Component {
   // }
 
   toggleChange = (e, id) => {
-    if (e.target.checked == true) {
+    // if (e.target.checked == true) {
       const obj = {
         id: Number(id),
         isChecked: e.target.checked
       }
       this.props.commFunc(obj)
-    }
+    // }
   }
   
   render() {

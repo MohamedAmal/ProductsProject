@@ -9,11 +9,12 @@ import ProductCard from './productcard'
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [], deleteAction: false, refreshBoxes: false }
+    this.state = { products: [], massDelete: [], deleteAction: false }
   }
   componentDidMount() {
     // const url = 'http://localhost/index.php/'  // local
     const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+
     axios.get(url).then(response => response.data).then(data => {
       if (data.length > 0) {
         const dvd = data.filter(obj => obj.Type == 'DVD');
@@ -21,6 +22,7 @@ class ProductList extends React.Component {
         const book = data.filter(obj => obj.Type == 'Book');
         const viewProducts = [...dvd, ...furniture, ...book]
         this.setState({ products: viewProducts })
+        console.log('did mount', viewProducts)
       }
       else { this.setState({ products: [] }) }
     }).catch(function (response) {
@@ -44,6 +46,7 @@ class ProductList extends React.Component {
           const book = data.filter(obj => obj.Type == 'Book');
           const viewProducts = [...dvd, ...furniture, ...book]
           this.setState({ products: viewProducts })
+          console.log('did update', viewProducts)
         }
         else {
           this.setState({ products: [] })

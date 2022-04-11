@@ -94,8 +94,8 @@ class ProductAdd extends React.Component {
 
       await axios({
         method: 'POST',
-        url: 'http://localhost/index.php/',  // local
-        // url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
+        // url: 'http://localhost/index.php/',  // local
+        url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
         data: formData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
       })
@@ -105,13 +105,7 @@ class ProductAdd extends React.Component {
         .catch(function (response) {
           console.log(response)
         });
-      // const redirect = true
       this.props.stateCommFunc(true)
-      // setTimeout(() => {
-      //   this.setState({
-      //     redirect: true
-      //   })
-      // }, 0);
       this.setState({
         redirect: true
       })
@@ -122,11 +116,6 @@ class ProductAdd extends React.Component {
   handleCancel(e) {
     e.preventDefault()
     this.props.stateCommFunc(false)
-    // setTimeout(() => {
-      // this.setState({
-      //   redirect: true
-      // })
-    // }, 0);
     this.setState({
       redirect: true
     })
@@ -143,17 +132,8 @@ class ProductAdd extends React.Component {
             <h2>Product Add</h2>
             <div className='d-flex justify-content-between'>
               <form onSubmit={this.handleSubmit}  >
-
                 <button type="submit" className="btn btn-primary m-2" value="save">Save</button>
-
                 <button to="/" onClick={(e) => this.handleCancel(e)} className="btn btn-success m-2">Cancel</button>
-
-                {/* <Link to={{
-                  pathname: '/',
-                  state: { msg: 'cancelled' }
-                }} className="btn btn-success m-2">Cancel</Link> */}
-
-
               </form>
             </div>
           </div>
@@ -280,3 +260,9 @@ class ProductAdd extends React.Component {
   }
 }
 export default ProductAdd;
+
+      // setTimeout(() => {
+      //   this.setState({
+      //     redirect: true
+      //   })
+      // }, 0);

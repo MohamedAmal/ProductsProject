@@ -8,7 +8,7 @@ class ProductAdd extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
-    this.handleToggle = this.handleCancel.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
 
     this.state = {
       sku: null, name: null, price: null, size: null,

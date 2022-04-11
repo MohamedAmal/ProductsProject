@@ -8,6 +8,8 @@ class ProductAdd extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleToggle = this.handleCancel.bind(this);
+
     this.state = {
       sku: null, name: null, price: null, size: null,
       height: null, width: null, length: null, weight: null, dropDownSelection: 'DVD',
@@ -92,8 +94,8 @@ class ProductAdd extends React.Component {
 
       await axios({
         method: 'POST',
-        // url: 'http://localhost/index.php/',  // local
-        url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
+        url: 'http://localhost/index.php/',  // local
+        // url: 'http://productsproject.atwebpages.com/index.php/', //remote awardspace
         data: formData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
       })
@@ -103,17 +105,32 @@ class ProductAdd extends React.Component {
         .catch(function (response) {
           console.log(response)
         });
-      const redirect = true
-      this.props.stateCommFunc(redirect)
-      setTimeout(() => {
-        this.setState({
-          redirect: true
-        })
-      }, 0);
+      // const redirect = true
+      this.props.stateCommFunc(true)
+      // setTimeout(() => {
+      //   this.setState({
+      //     redirect: true
+      //   })
+      // }, 0);
+      this.setState({
+        redirect: true
+      })
     }
 
   }
 
+  handleCancel(e) {
+    e.preventDefault()
+    this.props.stateCommFunc(false)
+    // setTimeout(() => {
+      // this.setState({
+      //   redirect: true
+      // })
+    // }, 0);
+    this.setState({
+      redirect: true
+    })
+  }
 
   render() {
     if (this.state.redirect) {
@@ -129,7 +146,14 @@ class ProductAdd extends React.Component {
 
                 <button type="submit" className="btn btn-primary m-2" value="save">Save</button>
 
-                <Link to="/" className="btn btn-success m-2">Cancel</Link>
+                <button to="/" onClick={(e) => this.handleCancel(e)} className="btn btn-success m-2">Cancel</button>
+
+                {/* <Link to={{
+                  pathname: '/',
+                  state: { msg: 'cancelled' }
+                }} className="btn btn-success m-2">Cancel</Link> */}
+
+
               </form>
             </div>
           </div>
@@ -242,13 +266,13 @@ class ProductAdd extends React.Component {
           </div >
 
           <div className={`${footerStyles.footer} d-flex justify-content-center `}>
-          <footer className='container d-flex justify-content-center text-center p-0' >
-            <div className='container d-flex flex-column justify-content-center p-4 pt-0'  >
-              <hr className='p-0 m-3 mt-2' style={{ border: '1px solid black' }}></hr>
-              Scandiweb Test assignment
-            </div>
-          </footer>
-        </div>
+            <footer className='container d-flex justify-content-center text-center p-0' >
+              <div className='container d-flex flex-column justify-content-center p-4 pt-0'  >
+                <hr className='p-0 m-3 mt-2' style={{ border: '1px solid black' }}></hr>
+                Scandiweb Test assignment
+              </div>
+            </footer>
+          </div>
         </div >
 
       )

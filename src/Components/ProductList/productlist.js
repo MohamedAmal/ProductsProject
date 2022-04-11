@@ -3,17 +3,16 @@ import * as ReactDOM from 'react-dom';
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
 import footerStyles from '../../ParentComponent/footer.module.css'
-
-
 import ProductCard from './productcard'
+
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [], deleteAction: false }
+    this.state = { products: [], massDelete: [], deleteAction: false, successMsg: null }
   }
   componentDidMount() {
-    // const url = 'http://localhost/index.php/'  // local
-    const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+    const url = 'http://localhost/index.php/'  // local
+    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
 
     axios.get(url).then(response => response.data).then(data => {
       if (data.length > 0) {
@@ -26,7 +25,7 @@ class ProductList extends React.Component {
       }
       else { this.setState({ products: [] }) }
     }).catch(function (response) {
-      // console.log('error', response)
+      console.log('error', response)
     });
   }
 
@@ -37,8 +36,8 @@ class ProductList extends React.Component {
   async componentDidUpdate() {
     if (this.state.deleteAction == true) {
 
-      // const url = 'http://localhost/index.php/'  // local
-      const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+      const url = 'http://localhost/index.php/'  // local
+      // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
       await axios.get(url).then(response => response.data).then(data => {
         if (data.length > 0) {
           const dvd = data.filter(obj => obj.Type == 'DVD');
@@ -46,7 +45,6 @@ class ProductList extends React.Component {
           const book = data.filter(obj => obj.Type == 'Book');
           const viewProducts = [...dvd, ...furniture, ...book]
           this.setState({ products: viewProducts })
-          console.log('did update', viewProducts)
         }
         else {
           this.setState({ products: [] })
@@ -58,21 +56,18 @@ class ProductList extends React.Component {
     }
   }
 
-
   async handleDelete(e) {
-
     if (this.state.massDelete.length > 0) {
       await axios({
         method: 'DELETE',
-        // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-        url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+        url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+        // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
-      
-      setTimeout(() => this.setState({ products: [],massDelete: [], deleteAction: true }), 1000)
-      // this.setState({ massDelete: [], deleteAction: true })
-      // setTimeout is setto avoid any possible remote server delay 
 
+      // setTimeout is set to avoid any possible remote server delay 
+      setTimeout(() => this.setState({ products: [], massDelete: [], deleteAction: true }), 1000)
+      // this.setState({ massDelete: [], deleteAction: true })
     }
   }
 
@@ -86,13 +81,14 @@ class ProductList extends React.Component {
       this.setState({ massDelete: tempArr })
     }
   }
+  
   render() {
     return (
       <div className="container">
         <div className='d-flex justify-content-between mt-4 mx-3 p-0'>
           <h2>Product List</h2>
-          <p>{this.props.commState.toString()}</p>
-          <p>{this.props.massDelete}</p>
+
+          {this.props.commState === true && <h5 className="mt-3 text-success"><em>Product Added Succefully</em></h5>}
 
           <div className='d-flex justify-content-between'>
             <Link to='/addproduct' className='btn btn-primary m-2'>

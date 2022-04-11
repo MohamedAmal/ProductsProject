@@ -6,18 +6,13 @@ class ProductCard extends React.Component {
       toggleData: { id: null, isChecked: false }
     }
   }
-  // shouldComponentUpdate() {
-  //   return true
-  // }
 
   toggleChange = (e, id) => {
-    // if (e.target.checked == true) {
       const obj = {
         id: Number(id),
         isChecked: e.target.checked
       }
       this.props.commFunc(obj)
-    // }
   }
   
   render() {
@@ -37,6 +32,8 @@ class ProductCard extends React.Component {
             <h5 className="card-title t_sku">{this.props.sku}</h5>
             <h6 className="card-subtitle mb-2 text-muted t_title">{this.props.pname}</h6>
             <p className="card-text t_price">{this.props.type}</p>
+            <p className="card-text t_price">{this.props.type}</p>
+
 
           </div>
         </div>

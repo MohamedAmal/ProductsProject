@@ -8,20 +8,15 @@ import ProductCard from './productcard'
 class ProductList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { products: [], massDelete: [], deleteAction: false, successMsg: null }
+    this.state = { products: [], massDelete: [], deleteAction: false }
   }
   componentDidMount() {
-    // const url = 'http://localhost/index.php/'  // local
-    const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+    const url = 'http://localhost/index.php/'  // local
+    // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
 
     axios.get(url).then(response => response.data).then(data => {
       if (data.length > 0) {
-        const dvd = data.filter(obj => obj.Type == 'DVD');
-        const furniture = data.filter(obj => obj.Type == 'Furniture');
-        const book = data.filter(obj => obj.Type == 'Book');
-        const viewProducts = [...dvd, ...furniture, ...book]
-        this.setState({ products: viewProducts })
-        console.log('did mount', viewProducts)
+        this.setState({ products: data })
       }
       else { this.setState({ products: [] }) }
     }).catch(function (response) {
@@ -36,15 +31,11 @@ class ProductList extends React.Component {
   async componentDidUpdate() {
     if (this.state.deleteAction == true) {
 
-      // const url = 'http://localhost/index.php/'  // local
-      const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
+      const url = 'http://localhost/index.php/'  // local
+      // const url = 'http://productsproject.atwebpages.com/index.php/' // remote awardspace
       await axios.get(url).then(response => response.data).then(data => {
         if (data.length > 0) {
-          const dvd = data.filter(obj => obj.Type == 'DVD');
-          const furniture = data.filter(obj => obj.Type == 'Furniture');
-          const book = data.filter(obj => obj.Type == 'Book');
-          const viewProducts = [...dvd, ...furniture, ...book]
-          this.setState({ products: viewProducts })
+          this.setState({ products: data })
         }
         else {
           this.setState({ products: [] })
@@ -60,14 +51,13 @@ class ProductList extends React.Component {
     if (this.state.massDelete.length > 0) {
       await axios({
         method: 'DELETE',
-        // url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
-        url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
+        url: 'http://localhost/index.php/?delete=' + this.state.massDelete.join(),   // local
+        // url: 'http://productsproject.atwebpages.com/index.php/?delete=' + this.state.massDelete.join(), // remote awardspace
         config: { headers: { 'Content-Type': 'application/json' } }
       }).then(function (response) { console.log(response) }).catch(function (response) { console.log(response) });
 
       // setTimeout is set to avoid any possible remote server delay 
       setTimeout(() => this.setState({ products: [], massDelete: [], deleteAction: true }), 1000)
-      // this.setState({ massDelete: [], deleteAction: true })
     }
   }
 
@@ -81,7 +71,7 @@ class ProductList extends React.Component {
       this.setState({ massDelete: tempArr })
     }
   }
-  
+
   render() {
     return (
       <div className="container">
@@ -106,7 +96,7 @@ class ProductList extends React.Component {
         </div>
         <hr className='mx-3'></hr>
 
-        <div className='row d-flex flex-row flex-wrap justify-content-start p-0 m-0'>
+        <div className='row d-flex flex-row flex-wrap justify-content-start p-0 m-0 pb-4 mb-5'>
           {this.state.products.map((item, key) => {
             return (
               <ProductCard
@@ -115,6 +105,13 @@ class ProductList extends React.Component {
                 sku={item.SKU}
                 pname={item.Name}
                 type={item.Type}
+                price={item.Price}
+                size={item.Size}
+                length={item.Length}
+                width={item.Width}
+                height={item.Height}
+                weight={item.Weight}
+
                 commFunc={e => this.updateState(e)}
               />
             )

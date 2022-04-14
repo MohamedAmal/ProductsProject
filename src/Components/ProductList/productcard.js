@@ -27,12 +27,9 @@ class ProductCard extends React.Component {
 
           </div>
           <div className="card-body">
-            {/* {this.props.id_db} */}
             <h5 className="card-title">{this.props.sku}</h5>
             <h6 className="card-subtitle mb-2 text-muted">{this.props.pname}</h6>
             <p className="card-text">{this.props.price} $</p>
-            {/* <p className="card-text">{this.props.type}</p> */}
-
             {this.props.type === 'DVD' && <p className="card-text">Size:{this.props.size} MB</p>}
             {this.props.type === 'Furniture' && <p className="card-text">Dimension:{this.props.length}x{this.props.width}x{this.props.height}</p>}
             {this.props.type === 'Book' && <p className="card-text">{this.props.weight}KG</p>}
